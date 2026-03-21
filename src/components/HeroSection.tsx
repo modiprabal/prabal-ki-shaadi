@@ -86,6 +86,9 @@ export default function HeroSection() {
 
         {/* ── LEFT: Photo (hidden on mobile, shown on lg+) ── */}
         <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.5, delay: 0.8 }}
           className="hidden lg:block relative w-[48%] h-full flex-shrink-0 overflow-hidden"
         >
           <motion.div style={{ scale: photoScale }} className="absolute inset-0 will-change-transform">
@@ -170,7 +173,12 @@ export default function HeroSection() {
           </motion.h1>
 
           {/* ── Mobile-only photo (between names and details) ── */}
-          <div className="lg:hidden relative w-full max-w-[380px] h-[28vh] min-h-[180px] my-4 rounded-lg overflow-hidden self-center">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: 1.0 }}
+            className="lg:hidden relative w-full max-w-[380px] h-[28vh] min-h-[180px] my-4 rounded-lg overflow-hidden self-center"
+          >
             <Image
               src="/couple-hero.jpg"
               alt={`${groom.firstName} & ${bride.firstName}`}
@@ -183,14 +191,14 @@ export default function HeroSection() {
             <div className="absolute inset-0 pointer-events-none" style={{
               boxShadow: "inset 0 0 40px 20px #0a0a0c",
             }} />
-          </div>
+          </motion.div>
 
           {/* Gold line */}
           <motion.div
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ duration: 1.2, delay: 1.2, ease: "easeInOut" }}
-            className="w-60 lg:w-60 h-[1px] mt-6 lg:mt-8 mb-5"
+            className="w-60 lg:w-60 max-w-[80vw] h-[1px] mt-6 lg:mt-8 mb-5"
             style={{ background: "linear-gradient(to right, transparent, #b8965a, transparent)" }}
           />
 

@@ -34,10 +34,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${outfit.variable} ${cormorant.variable} ${devanagari.variable} antialiased scroll-smooth`}>
-      <body className="min-h-screen flex flex-col font-sans">
+    <html lang="en" className={`${outfit.variable} ${cormorant.variable} ${devanagari.variable} antialiased scroll-smooth overflow-x-hidden`}>
+      <body className="min-h-screen flex flex-col font-sans overflow-x-hidden">
         <Navbar />
-        {children}
+        <main className="flex-grow overflow-x-hidden">
+          {children}
+        </main>
       </body>
     </html>
   );

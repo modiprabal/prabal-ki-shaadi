@@ -82,7 +82,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 md:px-10 transition-all duration-700 ${
+      className={`fixed top-0 inset-x-0 z-50 flex items-center justify-between px-6 md:px-10 transition-all duration-700 ${
         scrolled ? "h-14 bg-[#0a0a0c]/90 backdrop-blur-xl" : "h-16 md:h-20 bg-transparent"
       }`}
     >

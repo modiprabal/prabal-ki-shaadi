@@ -7,7 +7,7 @@ export default function EventsPreview() {
   const { events } = weddingConfig;
 
   return (
-    <section id="events" className="relative py-28 md:py-36 px-6 md:px-12" style={{ background: "#08080a" }}>
+    <section id="events" className="relative py-28 md:py-36 px-6 md:px-12 overflow-hidden" style={{ background: "#08080a" }}>
       {/* Section label */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -26,7 +26,7 @@ export default function EventsPreview() {
           Two Days of Celebration
         </h2>
         <div
-          className="w-120 h-[1px] mx-auto mt-6"
+          className="w-24 md:w-120 max-w-[80vw] h-[1px] mx-auto mt-6"
           style={{ background: "linear-gradient(to right, transparent, #b8965a, transparent)" }}
         />
       </motion.div>
