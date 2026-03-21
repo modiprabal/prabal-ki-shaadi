@@ -15,8 +15,8 @@ const inter = Inter({
 import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
-  title: "Prabal and [Bride's Name] | Wedding Invitation",
-  description: "Join us in celebrating our union.",
+  title: "Prabal & Shreya | Wedding Invitation",
+  description: "Join us in celebrating the wedding of Prabal and Shreya.",
 };
 
 export default function RootLayout({

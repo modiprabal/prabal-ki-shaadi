@@ -17,6 +17,8 @@ export const weddingConfig = {
     city: "Lalitpur, India",
     mainHotelName: "Multiple Accommodations",
     weddingVenue: "Shubh Heaven Resort",
+    trainStationName: "Lalitpur Junction (LAR)",
+    trainStationDistance: "2km",
     mapEmbedUrl: "https://maps.google.com/maps?q=Shubh%20Heaven%20Resort,%20Lalitpur,%20Uttar%20Pradesh&t=&z=14&ie=UTF8&iwloc=&output=embed",
     airports: [
       {
