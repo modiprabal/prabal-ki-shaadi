@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  /* ─── Refined Palette ─── */
+  /* ─── Refined Palette (Tailwind tokens) ─── */
   --color-bg: #0a0a0c;
   --color-bg-elevated: #111113;
   --color-gold: #b8965a;
@@ -11,7 +11,7 @@
   --color-cream-muted: #c8c0b0;
   --color-muted: #555;
 
-  /* Brand aliases (for other pages) */
+  /* Brand aliases */
   --color-brand-peach: #FAF6F0;
   --color-brand-mint: #E0F4E8;
   --color-brand-sage: #B4D4C6;
@@ -37,11 +37,12 @@ html {
 }
 
 body {
-  background: var(--color-bg);
-  color: var(--color-cream);
+  background: var(--theme-bg, #0a0a0c);
+  color: var(--theme-text, #f5f0e8);
   min-height: 100vh;
   font-family: var(--font-sans);
   overflow-x: hidden;
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 /* ─── Noise grain texture overlay ─── */
@@ -51,14 +52,21 @@ body {
   inset: 0;
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.025;
+  opacity: var(--theme-noise-opacity, 0.025);
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 256px;
+  transition: opacity 0.5s ease;
 }
 
 /* ─── Selection ─── */
 ::selection {
-  background: rgba(184, 150, 90, 0.25);
-  color: #f5f0e8;
+  background: var(--theme-selection-bg, rgba(184, 150, 90, 0.25));
+  color: var(--theme-selection-text, #f5f0e8);
+}
+
+/* ─── Theme transition helpers ─── */
+.theme-transition {
+  transition: background-color 0.5s ease, color 0.5s ease,
+              border-color 0.5s ease, box-shadow 0.5s ease;
 }

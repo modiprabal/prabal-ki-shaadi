@@ -38,15 +38,15 @@ function Countdown({ targetDate }: { targetDate: string }) {
       {pairs.map(([label, val], i) => (
         <div key={label} className="flex items-center">
           <div className="flex flex-col items-center w-12 md:w-14">
-            <span className="font-display font-light text-xl md:text-2xl tabular-nums leading-none" style={{ color: "#f5f0e8" }}>
+            <span className="font-display font-light text-xl md:text-2xl tabular-nums leading-none" style={{ color: "var(--theme-text)" }}>
               {val.toString().padStart(2, "0")}
             </span>
-            <span className="text-[6px] md:text-[7px] uppercase tracking-[0.25em] mt-1 font-sans" style={{ color: "#444" }}>
+            <span className="text-[6px] md:text-[7px] uppercase tracking-[0.25em] mt-1 font-sans" style={{ color: "var(--theme-text-dim)" }}>
               {label}
             </span>
           </div>
           {i < 3 && (
-            <span className="text-sm font-light -mt-2.5" style={{ color: "rgba(184,150,90,0.25)" }}>:</span>
+            <span className="text-sm font-light -mt-2.5" style={{ color: "var(--theme-accent-faint)" }}>:</span>
           )}
         </div>
       ))}
@@ -71,14 +71,14 @@ export default function HeroSection() {
       ref={sectionRef}
       id="home"
       className="noise-overlay relative w-full h-screen overflow-hidden"
-      style={{ background: "#0a0a0c" }}
+      style={{ background: "var(--theme-bg)" }}
     >
       {/* Thin arch — barely visible */}
       <svg
         className="absolute top-0 left-1/2 -translate-x-1/2 w-[60%] max-w-[450px] h-auto pointer-events-none z-0"
         viewBox="0 0 700 900" fill="none" style={{ opacity: 0.02 }}
       >
-        <path d="M100,900 L100,350 Q100,80 350,60 Q600,80 600,350 L600,900" stroke="#b8965a" strokeWidth="1" />
+        <path d="M100,900 L100,350 Q100,80 350,60 Q600,80 600,350 L600,900" stroke="var(--theme-accent)" strokeWidth="1" />
       </svg>
 
       {/* ━━━ Desktop: side-by-side ━━━ */}
@@ -104,17 +104,17 @@ export default function HeroSection() {
           {/* Right edge fade — gentle blend into text area */}
           <div
             className="absolute top-0 right-0 w-[30%] h-full pointer-events-none"
-            style={{ background: "linear-gradient(to left, #0a0a0c, transparent)" }}
+            style={{ background: `linear-gradient(to left, var(--theme-fade-color), transparent)` }}
           />
           {/* Bottom fade */}
           <div
             className="absolute bottom-0 left-0 right-0 h-[15%] pointer-events-none"
-            style={{ background: "linear-gradient(to top, #0a0a0c, transparent)" }}
+            style={{ background: `linear-gradient(to top, var(--theme-fade-color), transparent)` }}
           />
           {/* Top fade */}
           <div
             className="absolute top-0 left-0 right-0 h-[10%] pointer-events-none"
-            style={{ background: "linear-gradient(to bottom, #0a0a0c, transparent)" }}
+            style={{ background: `linear-gradient(to bottom, var(--theme-fade-color), transparent)` }}
           />
         </motion.div>
 
@@ -130,14 +130,14 @@ export default function HeroSection() {
             transition={{ duration: 1.2, delay: 0.1 }}
             className="flex items-center gap-4 mb-3"
           >
-            <div className="w-10 lg:w-16 h-[1px]" style={{ background: "linear-gradient(to right, transparent, rgba(184,150,90,0.4))" }} />
+            <div className="w-10 lg:w-16 h-[1px]" style={{ background: `linear-gradient(to right, transparent, var(--theme-accent-subtle))` }} />
             <span
               className="font-hindi text-2xl md:text-3xl"
-              style={{ color: "rgba(184,150,90,0.85)" }}
+              style={{ color: "var(--theme-accent-bright)" }}
             >
               ॐ
             </span>
-            <div className="w-10 lg:w-16 h-[1px]" style={{ background: "linear-gradient(to left, transparent, rgba(184,150,90,0.4))" }} />
+            <div className="w-10 lg:w-16 h-[1px]" style={{ background: `linear-gradient(to left, transparent, var(--theme-accent-subtle))` }} />
           </motion.div>
 
           {/* शुभ विवाह */}
@@ -146,7 +146,7 @@ export default function HeroSection() {
             animate={{ opacity: 1 }}
             transition={{ duration: 1.5, delay: 0.3 }}
             className="font-hindi text-sm md:text-base tracking-[0.35em] mb-6 text-center uppercase"
-            style={{ color: "rgba(184,150,90,0.55)" }}
+            style={{ color: "var(--theme-accent-muted)" }}
           >
             शुभ विवाह
           </motion.p>
@@ -159,7 +159,7 @@ export default function HeroSection() {
             className="font-display font-light leading-[0.85] tracking-[0.02em] select-none"
             style={{
               fontSize: "clamp(3.5rem, 9vw, 7rem)",
-              color: "#f5f0e8",
+              color: "var(--theme-text)",
             }}
           >
             {groom.firstName}
@@ -171,9 +171,9 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 1, type: "spring", stiffness: 80 }}
             className="flex items-center gap-3 my-1"
           >
-            <div className="w-8 lg:w-12 h-[1px]" style={{ background: "linear-gradient(to right, transparent, rgba(184,150,90,0.3))" }} />
-            <span className="font-display italic text-2xl lg:text-3xl" style={{ color: "#b8965a" }}>&amp;</span>
-            <div className="w-8 lg:w-12 h-[1px]" style={{ background: "linear-gradient(to left, transparent, rgba(184,150,90,0.3))" }} />
+            <div className="w-8 lg:w-12 h-[1px]" style={{ background: `linear-gradient(to right, transparent, var(--theme-accent-faint))` }} />
+            <span className="font-display italic text-2xl lg:text-3xl" style={{ color: "var(--theme-accent)" }}>&amp;</span>
+            <div className="w-8 lg:w-12 h-[1px]" style={{ background: `linear-gradient(to left, transparent, var(--theme-accent-faint))` }} />
           </motion.div>
 
           <motion.h1
@@ -183,7 +183,7 @@ export default function HeroSection() {
             className="font-display font-light leading-[0.85] tracking-[0.02em] select-none"
             style={{
               fontSize: "clamp(3.5rem, 9vw, 7rem)",
-              color: "#f5f0e8",
+              color: "var(--theme-text)",
             }}
           >
             {bride.firstName}
@@ -206,7 +206,7 @@ export default function HeroSection() {
             />
             {/* Soft edges */}
             <div className="absolute inset-0 pointer-events-none" style={{
-              boxShadow: "inset 0 0 40px 20px #0a0a0c",
+              boxShadow: `inset 0 0 40px 20px var(--theme-fade-color)`,
             }} />
           </motion.div>
 
@@ -216,7 +216,7 @@ export default function HeroSection() {
             animate={{ scaleX: 1 }}
             transition={{ duration: 1.2, delay: 1.2, ease: "easeInOut" }}
             className="w-60 lg:w-60 max-w-[80vw] h-[1px] mt-6 lg:mt-8 mb-5"
-            style={{ background: "linear-gradient(to right, transparent, #b8965a, transparent)" }}
+            style={{ background: `linear-gradient(to right, transparent, var(--theme-accent), transparent)` }}
           />
 
           {/* Date + Venue */}
@@ -226,10 +226,10 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 1.4 }}
             className="flex flex-col items-center"
           >
-            <p className="font-display font-light tracking-[0.25em] text-base md:text-lg uppercase" style={{ color: "#f5f0e8" }}>
+            <p className="font-display font-light tracking-[0.25em] text-base md:text-lg uppercase" style={{ color: "var(--theme-text)" }}>
               {dates.mainWeddingDate}
             </p>
-            <p className="text-[9px] md:text-[10px] font-sans uppercase tracking-[0.3em] mt-2 mb-6" style={{ color: "rgba(184,150,90,0.8)" }}>
+            <p className="text-[9px] md:text-[10px] font-sans uppercase tracking-[0.3em] mt-2 mb-6" style={{ color: "var(--theme-accent-deadline)" }}>
               {location.weddingVenue} &nbsp;·&nbsp; {location.city}
             </p>
           </motion.div>
@@ -253,14 +253,14 @@ export default function HeroSection() {
             <a
               href="/rsvp"
               className="group relative px-10 py-3 rounded-full font-sans text-[10px] font-medium tracking-[0.2em] uppercase overflow-hidden transition-all duration-500"
-              style={{ border: "1px solid rgba(184,150,90,0.35)", color: "#b8965a" }}
+              style={{ border: `1px solid var(--theme-accent-subtle)`, color: "var(--theme-accent)" }}
             >
-              <span className="relative z-10 group-hover:text-[#0a0a0c] transition-colors duration-500">
+              <span className="relative z-10 group-hover:text-[var(--theme-btn-text)] transition-colors duration-500">
                 Celebrate With Us
               </span>
               <div
                 className="absolute inset-0 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500"
-                style={{ background: "#b8965a" }}
+                style={{ background: "var(--theme-accent)" }}
               />
             </a>
           </motion.div>
@@ -278,7 +278,7 @@ export default function HeroSection() {
           animate={{ y: [0, 4, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           className="w-[1px] h-5"
-          style={{ background: "linear-gradient(to bottom, rgba(184,150,90,0.25), transparent)" }}
+          style={{ background: `linear-gradient(to bottom, var(--theme-accent-faint), transparent)` }}
         />
       </motion.div>
     </section>

@@ -22,6 +22,7 @@ const devanagari = Noto_Serif_Devanagari({
 });
 
 import Navbar from "@/components/Navbar";
+import ThemeProvider from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "Prabal & Shreya | शुभ विवाह — 24 June 2026",
@@ -36,10 +37,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${outfit.variable} ${cormorant.variable} ${devanagari.variable} antialiased scroll-smooth overflow-x-hidden`}>
       <body className="min-h-screen flex flex-col font-sans overflow-x-hidden">
-        <Navbar />
-        <main className="flex-grow overflow-x-hidden">
-          {children}
-        </main>
+        <ThemeProvider>
+          <Navbar />
+          <main className="flex-grow overflow-x-hidden">
+            {children}
+          </main>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation";
 import { useAuthStore } from "@/lib/authStore";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Sun, Moon } from "lucide-react";
+import { useTheme } from "@/components/ThemeProvider";
 
 const SECTIONS = [
   { name: "Home", path: "/", sectionId: "home" },
@@ -20,6 +22,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const isHome = pathname === "/";
   const { isAuthenticated, logout } = useAuthStore();
+  const { theme, toggleTheme } = useTheme();
 
   // Scroll opacity + scroll spy
   useEffect(() => {
@@ -83,14 +86,17 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed top-0 inset-x-0 z-50 flex items-center justify-between px-6 md:px-10 transition-all duration-700 ${
-        scrolled ? "h-14 bg-[#0a0a0c]/90 backdrop-blur-xl" : "h-16 md:h-20 bg-transparent"
+        scrolled ? "h-14 backdrop-blur-xl" : "h-16 md:h-20 bg-transparent"
       }`}
+      style={{
+        background: scrolled ? "color-mix(in srgb, var(--theme-bg) 90%, transparent)" : "transparent",
+      }}
     >
       {/* Monogram */}
       <Link href="/" className="relative z-50">
         <motion.span
           className="font-display font-light text-xl tracking-[0.15em]"
-          style={{ color: "#b8965a" }}
+          style={{ color: "var(--theme-accent)" }}
           whileHover={{ opacity: 0.7 }}
         >
           P&S
@@ -105,7 +111,7 @@ export default function Navbar() {
             href={link.path}
             onClick={(e) => handleNavClick(e, link)}
             className="relative py-2 text-[10px] font-sans font-medium uppercase tracking-[0.2em] transition-colors duration-300"
-            style={{ color: isActive(link) ? "#b8965a" : "rgba(245,240,232,0.35)" }}
+            style={{ color: isActive(link) ? "var(--theme-accent)" : "var(--theme-accent-nav)" }}
           >
             <span className="hover:text-cream-muted transition-colors duration-300">
               {link.name}
@@ -114,39 +120,69 @@ export default function Navbar() {
               <motion.div
                 layoutId="nav-dot"
                 className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full"
-                style={{ background: "#b8965a" }}
+                style={{ background: "var(--theme-accent)" }}
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
               />
             )}
           </Link>
         ))}
 
+        {/* Theme toggle */}
+        <button
+          onClick={toggleTheme}
+          className="p-2 rounded-full transition-all duration-300 hover:opacity-70"
+          aria-label="Toggle theme"
+          style={{ color: "var(--theme-accent)" }}
+        >
+          <motion.div
+            key={theme}
+            initial={{ rotate: -90, opacity: 0, scale: 0.5 }}
+            animate={{ rotate: 0, opacity: 1, scale: 1 }}
+            exit={{ rotate: 90, opacity: 0, scale: 0.5 }}
+            transition={{ duration: 0.3 }}
+          >
+            {theme === "dark" ? <Sun size={14} /> : <Moon size={14} />}
+          </motion.div>
+        </button>
       </div>
 
-      {/* Mobile toggle */}
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="md:hidden relative z-50 p-2"
-        aria-label="Menu"
-      >
-        <div className="flex flex-col gap-1.5 w-6">
-          <motion.div
-            animate={isOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
-            className="h-[1.5px] w-full origin-center"
-            style={{ background: "#b8965a" }}
-          />
-          <motion.div
-            animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
-            className="h-[1.5px] w-full"
-            style={{ background: "#b8965a" }}
-          />
-          <motion.div
-            animate={isOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
-            className="h-[1.5px] w-full origin-center"
-            style={{ background: "#b8965a" }}
-          />
-        </div>
-      </button>
+      {/* Mobile: toggle + hamburger */}
+      <div className="md:hidden flex items-center gap-3 relative z-50">
+        {/* Theme toggle (mobile) */}
+        <button
+          onClick={toggleTheme}
+          className="p-2 rounded-full transition-all duration-300"
+          aria-label="Toggle theme"
+          style={{ color: "var(--theme-accent)" }}
+        >
+          {theme === "dark" ? <Sun size={14} /> : <Moon size={14} />}
+        </button>
+
+        {/* Hamburger */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="p-2"
+          aria-label="Menu"
+        >
+          <div className="flex flex-col gap-1.5 w-6">
+            <motion.div
+              animate={isOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
+              className="h-[1.5px] w-full origin-center"
+              style={{ background: "var(--theme-accent)" }}
+            />
+            <motion.div
+              animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
+              className="h-[1.5px] w-full"
+              style={{ background: "var(--theme-accent)" }}
+            />
+            <motion.div
+              animate={isOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
+              className="h-[1.5px] w-full origin-center"
+              style={{ background: "var(--theme-accent)" }}
+            />
+          </div>
+        </button>
+      </div>
 
       {/* Mobile sidebar */}
       <AnimatePresence>
@@ -168,7 +204,7 @@ export default function Navbar() {
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 35 }}
               className="fixed top-0 right-0 z-40 w-72 h-full flex flex-col pt-24 px-8 gap-8 md:hidden"
-              style={{ background: "#0d0d10" }}
+              style={{ background: "var(--theme-bg-sidebar)" }}
             >
               {links.map((link, i) => (
                 <motion.div
@@ -181,11 +217,11 @@ export default function Navbar() {
                     href={link.path}
                     onClick={(e) => handleNavClick(e, link)}
                     className="font-display font-light text-2xl tracking-[0.1em] transition-colors duration-300 block"
-                    style={{ color: isActive(link) ? "#b8965a" : "rgba(245,240,232,0.4)" }}
+                    style={{ color: isActive(link) ? "var(--theme-accent)" : "var(--theme-accent-nav)" }}
                   >
                     {link.name}
                     {isActive(link) && (
-                      <div className="w-6 h-[1px] mt-2" style={{ background: "#b8965a" }} />
+                      <div className="w-6 h-[1px] mt-2" style={{ background: "var(--theme-accent)" }} />
                     )}
                   </Link>
                 </motion.div>

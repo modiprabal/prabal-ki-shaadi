@@ -19,11 +19,11 @@ export default function RsvpPage() {
   };
 
   return (
-    <main className="noise-overlay min-h-screen flex items-center justify-center px-6 py-28" style={{ background: "#0a0a0c" }}>
+    <main className="noise-overlay min-h-screen flex items-center justify-center px-6 py-28" style={{ background: "var(--theme-bg)" }}>
       {/* Subtle glow */}
       <div
         className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(184,150,90,0.03), transparent 60%)" }}
+        style={{ background: `radial-gradient(circle, var(--theme-glow-bg), transparent 60%)` }}
       />
 
       <motion.div
@@ -34,15 +34,15 @@ export default function RsvpPage() {
       >
         {/* Header */}
         <div className="text-center mb-10">
-          <p className="text-[9px] font-sans uppercase tracking-[0.5em] mb-4" style={{ color: "#555" }}>
+          <p className="text-[9px] font-sans uppercase tracking-[0.5em] mb-4" style={{ color: "var(--theme-text-muted)" }}>
             Your Response
           </p>
-          <h1 className="font-display font-light" style={{ fontSize: "clamp(2.5rem, 6vw, 4rem)", color: "#f5f0e8" }}>
+          <h1 className="font-display font-light" style={{ fontSize: "clamp(2.5rem, 6vw, 4rem)", color: "var(--theme-text)" }}>
             RSVP
           </h1>
-          <div className="w-12 h-[1px] mx-auto mt-4 mb-4" style={{ background: "linear-gradient(to right, transparent, #b8965a, transparent)" }} />
-          <p className="text-m font-sans" style={{ color: "#555" }}>
-            Kindly respond by <span style={{ color: "rgba(184,150,90,0.6)" }}>{dates.rsvpDeadline}</span>
+          <div className="w-12 h-[1px] mx-auto mt-4 mb-4" style={{ background: `linear-gradient(to right, transparent, var(--theme-accent), transparent)` }} />
+          <p className="text-m font-sans" style={{ color: "var(--theme-text-muted)" }}>
+            Kindly respond by <span style={{ color: "var(--theme-event-number)" }}>{dates.rsvpDeadline}</span>
           </p>
         </div>
 
@@ -51,18 +51,18 @@ export default function RsvpPage() {
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             className="text-center py-12 rounded-2xl"
-            style={{ background: "#111113", border: "1px solid rgba(245,240,232,0.05)" }}
+            style={{ background: "var(--theme-bg-card)", border: "1px solid var(--theme-divider)" }}
           >
             <div
               className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5"
-              style={{ border: "1px solid rgba(184,150,90,0.3)", color: "#b8965a" }}
+              style={{ border: `1px solid var(--theme-accent-faint)`, color: "var(--theme-accent)" }}
             >
               <span className="text-2xl">✓</span>
             </div>
-            <h2 className="font-display font-light text-2xl mb-3" style={{ color: "#f5f0e8" }}>
+            <h2 className="font-display font-light text-2xl mb-3" style={{ color: "var(--theme-text)" }}>
               Thank you!
             </h2>
-            <p className="text-sm font-sans" style={{ color: "#555" }}>
+            <p className="text-sm font-sans" style={{ color: "var(--theme-text-muted)" }}>
               Your response has been recorded.<br />
               We can&apos;t wait to celebrate with you!
             </p>
@@ -71,11 +71,11 @@ export default function RsvpPage() {
           <form
             onSubmit={handleSubmit}
             className="flex flex-col gap-5 rounded-2xl p-8"
-            style={{ background: "#111113", border: "1px solid rgba(245,240,232,0.05)" }}
+            style={{ background: "var(--theme-bg-card)", border: "1px solid var(--theme-divider)" }}
           >
             {/* Name */}
             <div>
-              <label className="block text-[9px] uppercase tracking-[0.3em] mb-2.5 font-sans" style={{ color: "#555" }}>
+              <label className="block text-[9px] uppercase tracking-[0.3em] mb-2.5 font-sans" style={{ color: "var(--theme-text-muted)" }}>
                 Full Name
               </label>
               <input
@@ -84,34 +84,34 @@ export default function RsvpPage() {
                 placeholder="Enter your name"
                 className="w-full rounded-xl px-4 py-3.5 text-sm font-sans outline-none transition-all duration-300 focus:ring-1"
                 style={{
-                  background: "rgba(245,240,232,0.03)",
-                  border: "1px solid rgba(245,240,232,0.08)",
-                  color: "#f5f0e8",
+                  background: "var(--theme-divider)",
+                  border: "1px solid var(--theme-divider)",
+                  color: "var(--theme-text)",
                 }}
               />
             </div>
 
             {/* Attendance */}
             <div>
-              <label className="block text-[9px] uppercase tracking-[0.3em] mb-2.5 font-sans" style={{ color: "#555" }}>
+              <label className="block text-[9px] uppercase tracking-[0.3em] mb-2.5 font-sans" style={{ color: "var(--theme-text-muted)" }}>
                 Will you attend?
               </label>
               <select
                 className="w-full rounded-xl px-4 py-3.5 text-sm font-sans outline-none transition-all duration-300 appearance-none cursor-pointer"
                 style={{
-                  background: "rgba(245,240,232,0.03)",
-                  border: "1px solid rgba(245,240,232,0.08)",
-                  color: "#f5f0e8",
+                  background: "var(--theme-divider)",
+                  border: "1px solid var(--theme-divider)",
+                  color: "var(--theme-text)",
                 }}
               >
-                <option value="yes" style={{ background: "#111113" }}>Joyfully Accepts</option>
-                <option value="no" style={{ background: "#111113" }}>Regretfully Declines</option>
+                <option value="yes" style={{ background: "var(--theme-bg-card)" }}>Joyfully Accepts</option>
+                <option value="no" style={{ background: "var(--theme-bg-card)" }}>Regretfully Declines</option>
               </select>
             </div>
 
             {/* Guests */}
             <div>
-              <label className="block text-[9px] uppercase tracking-[0.3em] mb-2.5 font-sans" style={{ color: "#555" }}>
+              <label className="block text-[9px] uppercase tracking-[0.3em] mb-2.5 font-sans" style={{ color: "var(--theme-text-muted)" }}>
                 Number of Guests
               </label>
               <input
@@ -121,16 +121,16 @@ export default function RsvpPage() {
                 defaultValue="1"
                 className="w-full rounded-xl px-4 py-3.5 text-sm font-sans outline-none transition-all duration-300"
                 style={{
-                  background: "rgba(245,240,232,0.03)",
-                  border: "1px solid rgba(245,240,232,0.08)",
-                  color: "#f5f0e8",
+                  background: "var(--theme-divider)",
+                  border: "1px solid var(--theme-divider)",
+                  color: "var(--theme-text)",
                 }}
               />
             </div>
 
             {/* Special Requests */}
             <div>
-              <label className="block text-[9px] uppercase tracking-[0.3em] mb-2.5 font-sans" style={{ color: "#555" }}>
+              <label className="block text-[9px] uppercase tracking-[0.3em] mb-2.5 font-sans" style={{ color: "var(--theme-text-muted)" }}>
                 Special Requests
               </label>
               <textarea
@@ -138,9 +138,9 @@ export default function RsvpPage() {
                 placeholder="Dietary needs, accessibility requirements, etc."
                 className="w-full rounded-xl px-4 py-3.5 text-sm font-sans outline-none transition-all duration-300 resize-none"
                 style={{
-                  background: "rgba(245,240,232,0.03)",
-                  border: "1px solid rgba(245,240,232,0.08)",
-                  color: "#f5f0e8",
+                  background: "var(--theme-divider)",
+                  border: "1px solid var(--theme-divider)",
+                  color: "var(--theme-text)",
                 }}
               />
             </div>
@@ -151,8 +151,8 @@ export default function RsvpPage() {
               disabled={loading}
               className="group relative mt-3 w-full py-4 rounded-full font-sans text-[11px] font-medium tracking-[0.2em] uppercase overflow-hidden transition-all duration-500 disabled:opacity-50"
               style={{
-                background: "#b8965a",
-                color: "#0a0a0c",
+                background: "var(--theme-accent)",
+                color: "var(--theme-btn-text)",
               }}
             >
               <span className="relative z-10">{loading ? "Sending..." : "Send RSVP"}</span>
@@ -162,7 +162,7 @@ export default function RsvpPage() {
         )}
 
         {/* Footer */}
-        <p className="text-center mt-8 text-[9px] font-sans uppercase tracking-[0.3em]" style={{ color: "#222" }}>
+        <p className="text-center mt-8 text-[9px] font-sans uppercase tracking-[0.3em]" style={{ color: "var(--theme-text-dim)" }}>
           {groom.firstName} & {bride.firstName} · {dates.mainWeddingDate}
         </p>
       </motion.div>
