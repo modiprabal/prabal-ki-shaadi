@@ -98,7 +98,15 @@ export default function HeroSection() {
               fill
               priority
               sizes="48vw"
-              className="object-cover object-center"
+              className="object-cover object-center dark-hero-img"
+            />
+            <Image
+              src="/couple-hero-light.jpeg"
+              alt={`${groom.firstName} & ${bride.firstName}`}
+              fill
+              priority
+              sizes="48vw"
+              className="object-cover object-center light-hero-img"
             />
           </motion.div>
           {/* Right edge fade — gentle blend into text area */}

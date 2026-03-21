@@ -70,3 +70,18 @@ body {
   transition: background-color 0.5s ease, color 0.5s ease,
               border-color 0.5s ease, box-shadow 0.5s ease;
 }
+
+/* ─── Theme-based Hero Image Toggling ─── */
+.light-hero-img {
+  display: none !important;
+}
+.dark-hero-img {
+  display: block !important;
+}
+
+[data-theme="light"] .light-hero-img {
+  display: block !important;
+}
+[data-theme="light"] .dark-hero-img {
+  display: none !important;
+}
