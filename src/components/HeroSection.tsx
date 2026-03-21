@@ -90,7 +90,7 @@ export default function HeroSection() {
         >
           <motion.div style={{ scale: photoScale }} className="absolute inset-0 will-change-transform">
             <Image
-              src="/couple-hero.png"
+              src="/couple-hero.jpg"
               alt={`${groom.firstName} & ${bride.firstName}`}
               fill
               priority
@@ -172,7 +172,7 @@ export default function HeroSection() {
           {/* ── Mobile-only photo (between names and details) ── */}
           <div className="lg:hidden relative w-full max-w-[380px] h-[28vh] min-h-[180px] my-4 rounded-lg overflow-hidden self-center">
             <Image
-              src="/couple-hero.png"
+              src="/couple-hero.jpg"
               alt={`${groom.firstName} & ${bride.firstName}`}
               fill
               priority
