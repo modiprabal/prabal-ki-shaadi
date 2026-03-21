@@ -210,7 +210,15 @@ export default function HeroSection() {
               fill
               priority
               sizes="90vw"
-              className="object-cover object-center"
+              className="object-cover object-center dark-hero-img"
+            />
+            <Image
+              src="/couple-hero-light.jpeg"
+              alt={`${groom.firstName} & ${bride.firstName}`}
+              fill
+              priority
+              sizes="90vw"
+              className="object-cover object-center light-hero-img"
             />
             {/* Soft edges */}
             <div className="absolute inset-0 pointer-events-none" style={{
