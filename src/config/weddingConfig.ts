@@ -8,9 +8,9 @@ export const weddingConfig = {
     lastName: "Baisakhiya"
   },
   dates: {
-    mainWeddingDate: "15 December 2026",
-    rsvpDeadline: "October 15, 2026",
-    checkInDate: "14 December 2026",
+    mainWeddingDate: "24 June 2026",
+    rsvpDeadline: "May 15, 2026",
+    checkInDate: "23 June 2026",
     checkInTime: "12:00 PM"
   },
   location: {
@@ -56,7 +56,7 @@ export const weddingConfig = {
   events: [
     {
       title: "Haldi & Mehendi",
-      date: "14 December 2026",
+      date: "23 June 2026",
       time: "11:00 AM",
       venue: "Shubh Heaven Resort",
       mapUrl: "https://www.google.com/maps/search/?api=1&query=Shubh+Heaven+Resort+Lalitpur",
@@ -64,7 +64,7 @@ export const weddingConfig = {
     },
     {
       title: "Sangeet Night",
-      date: "14 December 2026",
+      date: "23 June 2026",
       time: "07:00 PM",
       venue: "Shubh Heaven Resort",
       mapUrl: "https://www.google.com/maps/search/?api=1&query=Shubh+Heaven+Resort+Lalitpur",
@@ -72,7 +72,7 @@ export const weddingConfig = {
     },
     {
       title: "The Wedding Ceremony",
-      date: "15 December 2026",
+      date: "24 June 2026",
       time: "04:00 PM",
       venue: "Shubh Heaven Resort",
       mapUrl: "https://www.google.com/maps/search/?api=1&query=Shubh+Heaven+Resort+Lalitpur",
@@ -80,7 +80,7 @@ export const weddingConfig = {
     },
     {
       title: "Grand Reception",
-      date: "15 December 2026",
+      date: "24 June 2026",
       time: "08:30 PM",
       venue: "Shubh Heaven Resort",
       mapUrl: "https://www.google.com/maps/search/?api=1&query=Shubh+Heaven+Resort+Lalitpur",
