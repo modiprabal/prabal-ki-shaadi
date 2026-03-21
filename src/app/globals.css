@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-peach: #FDF3EC;
+  --color-brand-mint: #E0F4E8;
+  --color-brand-sage: #B4D4C6;
+  --color-brand-emerald: #16462E;
+  --color-text-main: #2A4B3C;
+  --color-text-muted: #5C7A65;
+  --font-sans: var(--font-outfit), sans-serif;
+  --font-serif: var(--font-inter), serif;
+}
+
+body {
+  background-color: var(--color-brand-peach);
+  color: var(--color-text-main);
+  background-image: 
+    radial-gradient(circle at 10% 20%, var(--color-brand-mint) 0%, transparent 50%),
+    radial-gradient(circle at 90% 80%, rgba(255,255,255,0.8) 0%, transparent 50%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
