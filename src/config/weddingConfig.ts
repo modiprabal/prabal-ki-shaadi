@@ -59,6 +59,7 @@ export const weddingConfig = {
       date: "23 June 2026",
       time: "11:00 AM",
       venue: "Shubh Heaven Resort",
+      mapUrl: "https://www.google.com/maps/search/?api=1&query=Shubh+Heaven+Resort+Lalitpur",
       description: "A vibrant morning of colors, floral jewelry, and traditional music to kick off the celebrations."
     },
     {
@@ -66,6 +67,7 @@ export const weddingConfig = {
       date: "23 June 2026",
       time: "07:00 PM",
       venue: "Shubh Heaven Resort",
+      mapUrl: "https://www.google.com/maps/search/?api=1&query=Shubh+Heaven+Resort+Lalitpur",
       description: "Get ready to dance the night away with performances from friends and family under the stars."
     },
     {
@@ -73,6 +75,7 @@ export const weddingConfig = {
       date: "24 June 2026",
       time: "04:00 PM",
       venue: "Shubh Heaven Resort",
+      mapUrl: "https://www.google.com/maps/search/?api=1&query=Shubh+Heaven+Resort+Lalitpur",
       description: "Join us as we take our vows and tie the knot in a traditional sunset ceremony."
     },
     {
@@ -80,6 +83,7 @@ export const weddingConfig = {
       date: "24 June 2026",
       time: "08:30 PM",
       venue: "Shubh Heaven Resort",
+      mapUrl: "https://www.google.com/maps/search/?api=1&query=Shubh+Heaven+Resort+Lalitpur",
       description: "A night of fine dining, cocktails, and celebration to conclude our wedding weekend."
     }
   ]

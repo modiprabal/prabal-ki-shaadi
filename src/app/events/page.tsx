@@ -27,9 +27,15 @@ export default function EventsPage() {
               <h2 className="font-serif text-2xl text-text-main mt-2 mb-2">{event.title}</h2>
               <p className="text-sm text-text-muted leading-relaxed">{event.description}</p>
             </div>
-            <div className="md:w-1/3 bg-white/70 border border-brand-gold/20 rounded-2xl p-4 text-center self-stretch flex items-center justify-center shadow-inner">
-              <span className="text-text-main font-medium text-sm">{event.venue}</span>
-            </div>
+            <a 
+              href={event.mapUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 md:mt-0 px-4 py-2 bg-brand-mint/30 border border-brand-gold/30 rounded-full flex items-center gap-2 active:bg-brand-mint/50 transition-colors"
+            >
+              <span className="text-text-main font-medium text-[11px] whitespace-nowrap">{event.venue}</span>
+              <span className="text-brand-gold font-bold text-[10px]">↗</span>
+            </a>
           </motion.div>
         ))}
       </div>
