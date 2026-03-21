@@ -63,20 +63,36 @@ export const weddingConfig = {
       description: "A vibrant morning of colors, floral jewelry, and traditional music to kick off the celebrations."
     },
     {
+      title: "Engagement",
+      date: "23 June 2026",
+      time: "04:00 PM",
+      venue: "Shubh Heaven Resort",
+      mapUrl: "https://www.google.com/maps/search/?api=1&query=Shubh+Heaven+Resort+Lalitpur",
+      description: "The formal ring ceremony where both families come together to bless the couple."
+    },
+    {
       title: "Sangeet Night",
       date: "23 June 2026",
       time: "07:00 PM",
       venue: "Shubh Heaven Resort",
       mapUrl: "https://www.google.com/maps/search/?api=1&query=Shubh+Heaven+Resort+Lalitpur",
-      description: "Get ready to dance the night away with performances from friends and family under the stars."
+      description: "Dance the night away with performances from friends and family under the stars."
     },
     {
-      title: "The Wedding Ceremony",
+      title: "Baarat",
       date: "24 June 2026",
-      time: "04:00 PM",
+      time: "02:00 PM",
       venue: "Shubh Heaven Resort",
       mapUrl: "https://www.google.com/maps/search/?api=1&query=Shubh+Heaven+Resort+Lalitpur",
-      description: "Join us as we take our vows and tie the knot in a traditional sunset ceremony."
+      description: "The groom's grand procession arrives with music, dancing, and celebrations."
+    },
+    {
+      title: "Wedding Ceremony",
+      date: "24 June 2026",
+      time: "05:00 PM",
+      venue: "Shubh Heaven Resort",
+      mapUrl: "https://www.google.com/maps/search/?api=1&query=Shubh+Heaven+Resort+Lalitpur",
+      description: "Join us as we take our sacred vows around the holy fire in a traditional ceremony."
     },
     {
       title: "Grand Reception",
@@ -84,7 +100,7 @@ export const weddingConfig = {
       time: "08:30 PM",
       venue: "Shubh Heaven Resort",
       mapUrl: "https://www.google.com/maps/search/?api=1&query=Shubh+Heaven+Resort+Lalitpur",
-      description: "A night of fine dining, cocktails, and celebration to conclude our wedding weekend."
+      description: "A night of fine dining, cocktails, and celebration to conclude our wedding festivities."
     }
   ]
 };

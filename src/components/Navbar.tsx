@@ -1,112 +1,197 @@
 "use client";
 
-import Link from 'next/link';
-import Image from 'next/image';
-import { usePathname } from 'next/navigation';
-import { useAuthStore } from '@/lib/authStore';
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useAuthStore } from "@/lib/authStore";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+const SECTIONS = [
+  { name: "Home", path: "/", sectionId: "home" },
+  { name: "Events", path: "/events", sectionId: "events" },
+  { name: "Travel", path: "/travel", sectionId: "venue" },
+  { name: "RSVP", path: "/rsvp", sectionId: "rsvp-section" },
+];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
   const pathname = usePathname();
+  const isHome = pathname === "/";
   const { isAuthenticated, logout } = useAuthStore();
 
-  const toggleMenu = () => setIsOpen(!isOpen);
+  // Scroll opacity + scroll spy
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 80);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // IntersectionObserver scroll spy (only on homepage)
+  useEffect(() => {
+    if (!isHome) return;
+
+    const sectionIds = SECTIONS.map((s) => s.sectionId);
+    const observers: IntersectionObserver[] = [];
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setActiveSection(id);
+          }
+        },
+        { rootMargin: "-40% 0px -55% 0px" }
+      );
+      observer.observe(el);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach((o) => o.disconnect());
+  }, [isHome, pathname]);
 
   const links = [
-    { name: 'Home', path: '/' },
-    { name: 'Events', path: '/events' },
-    { name: 'Travel', path: '/travel' },
-    { name: 'RSVP', path: '/rsvp' },
+    { name: "Home", path: "/", sectionId: "home" },
+    { name: "Events", path: "/events", sectionId: "events" },
+    { name: "Travel", path: "/travel", sectionId: "venue" },
+    { name: "RSVP", path: "/rsvp", sectionId: "rsvp-section" },
   ];
 
-  if (isAuthenticated) {
-    links.push({ name: 'Dashboard', path: '/dashboard' });
-  } else {
-    links.push({ name: 'Member Login', path: '/login' });
-  }
+  const handleNavClick = (e: React.MouseEvent, link: typeof links[0]) => {
+    // On homepage, scroll to section instead of navigating
+    if (isHome && link.sectionId) {
+      e.preventDefault();
+      const el = document.getElementById(link.sectionId);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+      setIsOpen(false);
+    }
+  };
+
+  const isActive = (link: typeof links[0]) => {
+    if (isHome && link.sectionId) {
+      return activeSection === link.sectionId;
+    }
+    return pathname === link.path;
+  };
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-white/60 backdrop-blur-lg border-b border-white/20 pr-6 pl-0 h-20 md:h-24 flex items-center justify-between shadow-sm">
-      {/* Branding */}
-      <Link href="/" className="z-50 relative hover:opacity-80 transition-opacity h-full aspect-square flex items-center justify-center overflow-hidden">
-        <Image src="/logo.png" alt="Prabal & Shreya Logo" fill sizes="(max-width: 768px) 80px, 96px" className="object-contain mix-blend-multiply p-2 scale-130 transform-gpu" priority />
+    <nav
+      className={`fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 md:px-10 transition-all duration-700 ${
+        scrolled ? "h-14 bg-[#0a0a0c]/90 backdrop-blur-xl" : "h-16 md:h-20 bg-transparent"
+      }`}
+    >
+      {/* Monogram */}
+      <Link href="/" className="relative z-50">
+        <motion.span
+          className="font-display font-light text-xl tracking-[0.15em]"
+          style={{ color: "#b8965a" }}
+          whileHover={{ opacity: 0.7 }}
+        >
+          P&S
+        </motion.span>
       </Link>
-      
-      {/* Desktop Links */}
-      <div className="hidden md:flex items-center gap-8 font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-text-muted">
-        {links.map(link => {
-          const isActive = pathname === link.path;
-          return (
-            <Link 
-              key={link.name} 
-              href={link.path} 
-              className={`transition-all relative py-2 ${isActive ? 'text-brand-gold' : 'hover:text-text-main'}`}
-            >
-              {link.name}
-              {isActive && (
-                 <motion.div layoutId="navbar-indicator" className="absolute -bottom-1 left-0 right-0 h-[2px] bg-brand-gold rounded-full" />
-              )}
-            </Link>
-          );
-        })}
-        {isAuthenticated && (
-          <button 
-            onClick={() => logout()}
-            className="bg-brand-peach/30 border border-brand-gold/20 px-4 py-2 rounded-full text-brand-gold hover:bg-brand-peach/50 transition-colors"
+
+      {/* Desktop */}
+      <div className="hidden md:flex items-center gap-10">
+        {links.map((link) => (
+          <Link
+            key={link.name}
+            href={link.path}
+            onClick={(e) => handleNavClick(e, link)}
+            className="relative py-2 text-[10px] font-sans font-medium uppercase tracking-[0.2em] transition-colors duration-300"
+            style={{ color: isActive(link) ? "#b8965a" : "rgba(245,240,232,0.35)" }}
           >
-            Logout
-          </button>
-        )}
+            <span className="hover:text-cream-muted transition-colors duration-300">
+              {link.name}
+            </span>
+            {isActive(link) && (
+              <motion.div
+                layoutId="nav-dot"
+                className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full"
+                style={{ background: "#b8965a" }}
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              />
+            )}
+          </Link>
+        ))}
+
       </div>
 
-      {/* Mobile Menu Button */}
-      <button onClick={toggleMenu} className="md:hidden text-text-main z-50 relative p-2 -mr-2" aria-label="Toggle Menu">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
-          {isOpen ? (
-            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-          ) : (
-            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-          )}
-        </svg>
+      {/* Mobile toggle */}
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="md:hidden relative z-50 p-2"
+        aria-label="Menu"
+      >
+        <div className="flex flex-col gap-1.5 w-6">
+          <motion.div
+            animate={isOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
+            className="h-[1.5px] w-full origin-center"
+            style={{ background: "#b8965a" }}
+          />
+          <motion.div
+            animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
+            className="h-[1.5px] w-full"
+            style={{ background: "#b8965a" }}
+          />
+          <motion.div
+            animate={isOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
+            className="h-[1.5px] w-full origin-center"
+            style={{ background: "#b8965a" }}
+          />
+        </div>
       </button>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile sidebar */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-            className="absolute top-0 left-0 w-full h-screen bg-[#FAF8F5]/95 backdrop-blur-xl flex flex-col items-center justify-center gap-10 md:hidden"
-          >
-            {links.map(link => {
-              const isActive = pathname === link.path;
-              return (
-                <Link 
-                  key={link.name} 
-                  href={link.path} 
-                  onClick={toggleMenu}
-                  className={`font-serif text-4xl tracking-widest transition-colors flex flex-col items-center ${isActive ? 'text-brand-gold font-bold underline underline-offset-8' : 'text-text-main hover:text-brand-sage'}`}
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm md:hidden"
+              onClick={() => setIsOpen(false)}
+            />
+            {/* Sidebar */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", stiffness: 300, damping: 35 }}
+              className="fixed top-0 right-0 z-40 w-72 h-full flex flex-col pt-24 px-8 gap-8 md:hidden"
+              style={{ background: "#0d0d10" }}
+            >
+              {links.map((link, i) => (
+                <motion.div
+                  key={link.name}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.05 * i, duration: 0.4 }}
                 >
-                  {link.name}
-                </Link>
-              );
-            })}
-            {isAuthenticated && (
-              <button 
-                onClick={() => {
-                  logout();
-                  toggleMenu();
-                }}
-                className="font-serif text-2xl text-brand-gold border-2 border-brand-gold px-8 py-3 rounded-full hover:bg-brand-gold hover:text-white transition-all uppercase tracking-widest"
-              >
-                Logout
-              </button>
-            )}
-          </motion.div>
+                  <Link
+                    href={link.path}
+                    onClick={(e) => handleNavClick(e, link)}
+                    className="font-display font-light text-2xl tracking-[0.1em] transition-colors duration-300 block"
+                    style={{ color: isActive(link) ? "#b8965a" : "rgba(245,240,232,0.4)" }}
+                  >
+                    {link.name}
+                    {isActive(link) && (
+                      <div className="w-6 h-[1px] mt-2" style={{ background: "#b8965a" }} />
+                    )}
+                  </Link>
+                </motion.div>
+              ))}
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </nav>

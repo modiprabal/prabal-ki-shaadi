@@ -1,145 +1,201 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Plane, Train } from "lucide-react";
+import { Plane, TrainFront, Hotel, MapPin } from "lucide-react";
 import { weddingConfig } from "@/config/weddingConfig";
 
 export default function TravelPage() {
   const { location, dates } = weddingConfig;
 
   return (
-    <main className="min-h-screen pt-32 pb-20 px-6 flex flex-col items-center">
-      <h1 className="font-serif text-4xl md:text-5xl text-text-main mb-6 text-center">
-        Travel & Accommodations
-      </h1>
-      <p className="text-text-muted text-center max-w-lg mb-16">
-        We are thrilled to host you in the beautiful city of {location.city}! Here is everything you need to know to plan your trip.
-      </p>
+    <main className="noise-overlay min-h-screen pt-28 pb-20 px-6 md:px-12" style={{ background: "#0a0a0c" }}>
+      <div className="max-w-5xl mx-auto">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-20"
+        >
+          <p className="text-[9px] font-sans uppercase tracking-[0.5em] mb-4" style={{ color: "#555" }}>
+            Getting There
+          </p>
+          <h1 className="font-display font-light" style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", color: "#f5f0e8" }}>
+            Travel & Stay
+          </h1>
+          <div className="w-12 h-[1px] mx-auto mt-6" style={{ background: "linear-gradient(to right, transparent, #b8965a, transparent)" }} />
+          <p className="font-sans text-sm mt-6 max-w-lg mx-auto leading-relaxed" style={{ color: "#555" }}>
+            Everything you need to plan your trip to {location.city} for the celebrations.
+          </p>
+        </motion.div>
 
-      {/* How To Reach */}
-      <div className="w-full max-w-6xl mb-16">
-        <h2 className="font-serif text-4xl text-text-main mb-12 text-center">How to Reach</h2>
-        
-        {/* By Air - 3 Column Grid (Moved to Top) */}
-        <h3 className="font-serif text-2xl text-text-main mb-6 flex justify-center items-center gap-3">
-           By Air
-        </h3>
-        <div className="grid md:grid-cols-3 gap-6 mb-16">
-          {location.airports.map((airport, index) => (
-            <motion.div 
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: index * 0.15 }}
-              className="bg-white/60 backdrop-blur-md rounded-3xl p-8 border border-white/50 shadow-sm flex flex-col h-full hover:border-brand-sage/50 transition-colors"
-            >
-              <div className="w-12 h-12 bg-brand-peach text-text-main rounded-2xl flex items-center justify-center mb-6 shadow-inner border border-white">
-                <Plane className="w-6 h-6" />
-              </div>
-              <h3 className="font-serif text-2xl text-text-main mb-3">{airport.name}</h3>
-              <p className="text-sm text-text-muted mb-6 leading-relaxed flex-1">
-                {airport.description}
-              </p>
-              
-              <div className="space-y-6">
-                <div>
-                  <h4 className="text-xs uppercase tracking-widest text-brand-emerald font-bold mb-3 border-b border-brand-sage/20 pb-2">Connecting Trains</h4>
-                  <ul className="space-y-2">
+        {/* ━━━ By Air ━━━ */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="mb-20"
+        >
+          <div className="flex items-center gap-4 mb-10">
+            <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ border: "1px solid rgba(184,150,90,0.3)" }}>
+              <Plane className="w-3.5 h-3.5" style={{ color: "#b8965a" }} />
+            </div>
+            <h2 className="font-display font-light text-2xl" style={{ color: "#f5f0e8" }}>By Air</h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {location.airports.map((airport, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                className="rounded-2xl p-7 transition-all duration-500 group"
+                style={{
+                  background: "#111113",
+                  border: "1px solid rgba(245,240,232,0.05)",
+                }}
+              >
+                <h3 className="font-display font-light text-lg mb-2 group-hover:text-gold-bright transition-colors duration-300" style={{ color: "#f5f0e8" }}>
+                  {airport.name}
+                </h3>
+                <p className="text-xs leading-relaxed mb-5" style={{ color: "#555" }}>
+                  {airport.description}
+                </p>
+
+                {/* Trains */}
+                <div className="mb-5">
+                  <p className="text-[8px] uppercase tracking-[0.3em] mb-3" style={{ color: "rgba(184,150,90,0.5)" }}>
+                    Connecting Trains
+                  </p>
+                  <ul className="space-y-1.5">
                     {airport.trains.map((train, i) => (
-                      <li key={i} className="text-sm text-text-main flex items-start gap-2">
-                        <span className="text-brand-sage mt-0.5">▪</span> {train}
+                      <li key={i} className="text-xs flex items-start gap-2" style={{ color: "#666" }}>
+                        <span style={{ color: "rgba(184,150,90,0.3)", marginTop: 2, fontSize: 6 }}>◆</span>
+                        {train}
                       </li>
                     ))}
                   </ul>
                 </div>
-                
-                <div>
-                  <h4 className="text-xs uppercase tracking-widest text-brand-emerald font-bold mb-3 border-b border-brand-sage/20 pb-2">Drive Distance</h4>
-                  <p className="text-sm text-text-main leading-relaxed">
-                    {airport.drive}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
 
-        {/* By Train - Horizontal Premium Card */}
-        <h3 className="font-serif text-2xl text-text-main mb-6 text-center mt-12">
-          By Train
-        </h3>
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+                {/* Drive */}
+                <div>
+                  <p className="text-[8px] uppercase tracking-[0.3em] mb-2" style={{ color: "rgba(184,150,90,0.5)" }}>
+                    By Road
+                  </p>
+                  <p className="text-xs leading-relaxed" style={{ color: "#555" }}>{airport.drive}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* ━━━ By Train ━━━ */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="bg-white/60 backdrop-blur-md rounded-[2.5rem] p-8 md:p-12 border border-brand-sage/40 shadow-sm flex flex-col md:flex-row items-center gap-10 max-w-4xl mx-auto mb-8 hover:shadow-md transition-shadow relative overflow-hidden"
+          className="mb-20"
         >
-          {/* Decorative faint background shape */}
-          <div className="absolute -right-20 -top-20 w-64 h-64 bg-brand-mint/30 rounded-full blur-3xl pointer-events-none"></div>
-
-          <div className="w-24 h-24 shrink-0 bg-white border border-brand-sage/30 text-text-main rounded-full flex items-center justify-center shadow-sm relative z-10">
-            <Train className="w-10 h-10 text-brand-emerald" />
+          <div className="flex items-center gap-4 mb-10">
+            <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ border: "1px solid rgba(184,150,90,0.3)" }}>
+              <TrainFront className="w-3.5 h-3.5" style={{ color: "#b8965a" }} />
+            </div>
+            <h2 className="font-display font-light text-2xl" style={{ color: "#f5f0e8" }}>By Train</h2>
           </div>
-          
-          <div className="flex-1 text-center md:text-left relative z-10">
-            <h3 className="font-serif text-3xl text-text-main mb-3">{location.trainStationName}</h3>
-            <p className="text-text-muted leading-relaxed mb-6 max-w-2xl">
-              Lalitpur Junction is a major railway hub with excellent, frequent direct connectivity from New Delhi, Mumbai, Bhopal, and other major cities across India.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 items-center md:items-start justify-center md:justify-start">
-               <span className="bg-brand-peach/50 border border-brand-sage/20 px-5 py-2.5 rounded-full text-xs uppercase tracking-widest text-text-main shadow-sm flex items-center gap-2 font-medium">
-                 📍 {location.trainStationDistance} to Venue
-               </span>
-               <span className="bg-brand-peach/50 border border-brand-sage/20 px-5 py-2.5 rounded-full text-xs uppercase tracking-widest text-text-main shadow-sm flex items-center gap-2 font-medium">
-                 🚕 Taxis Easily Available
-               </span>
+
+          <div
+            className="rounded-2xl p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center gap-8"
+            style={{ background: "#111113", border: "1px solid rgba(245,240,232,0.05)" }}
+          >
+            <div className="flex-1">
+              <h3 className="font-display font-light text-2xl mb-3" style={{ color: "#f5f0e8" }}>
+                {location.trainStationName}
+              </h3>
+              <p className="text-sm leading-relaxed mb-5" style={{ color: "#555" }}>
+                Lalitpur Junction is a major hub with direct connectivity from New Delhi, Mumbai, Bhopal, and other major cities across India.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <span className="text-[9px] uppercase tracking-[0.2em] px-4 py-2 rounded-full flex items-center gap-1.5" style={{ border: "1px solid rgba(184,150,90,0.2)", color: "rgba(184,150,90,0.6)" }}>
+                  <MapPin className="w-3 h-3" /> {location.trainStationDistance} to venue
+                </span>
+                <span className="text-[9px] uppercase tracking-[0.2em] px-4 py-2 rounded-full" style={{ border: "1px solid rgba(245,240,232,0.06)", color: "#555" }}>
+                  Taxis readily available
+                </span>
+              </div>
             </div>
           </div>
         </motion.div>
+
+        {/* ━━━ Accommodation ━━━ */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="mb-20"
+        >
+          <div className="flex items-center gap-4 mb-10">
+            <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ border: "1px solid rgba(184,150,90,0.3)" }}>
+              <Hotel className="w-3.5 h-3.5" style={{ color: "#b8965a" }} />
+            </div>
+            <h2 className="font-display font-light text-2xl" style={{ color: "#f5f0e8" }}>Where to Stay</h2>
+          </div>
+
+          <div
+            className="rounded-2xl p-8 md:p-10 text-center"
+            style={{ background: "#111113", border: "1px solid rgba(245,240,232,0.05)" }}
+          >
+            <p className="font-sans text-sm leading-relaxed max-w-2xl mx-auto mb-6" style={{ color: "#555" }}>
+              We are arranging comfortable stays across beautiful properties near the venue. We will reach out with your personalized hotel assignment closer to the date. Check-ins begin at {dates.checkInTime} on {dates.checkInDate}.
+            </p>
+            <span
+              className="inline-block text-[10px] font-sans uppercase tracking-[0.2em] px-6 py-2.5 rounded-full"
+              style={{ border: "1px solid rgba(245,240,232,0.06)", color: "#444" }}
+            >
+              Details Coming Soon
+            </span>
+          </div>
+        </motion.div>
+
+        {/* ━━━ Map ━━━ */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="mb-10"
+        >
+          <div className="flex items-center gap-4 mb-10">
+            <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ border: "1px solid rgba(184,150,90,0.3)" }}>
+              <MapPin className="w-3.5 h-3.5" style={{ color: "#b8965a" }} />
+            </div>
+            <h2 className="font-display font-light text-2xl" style={{ color: "#f5f0e8" }}>{location.weddingVenue}</h2>
+          </div>
+
+          <div
+            className="rounded-2xl overflow-hidden"
+            style={{ border: "1px solid rgba(245,240,232,0.05)", height: 400 }}
+          >
+            <iframe
+              src={location.mapEmbedUrl}
+              width="100%"
+              height="100%"
+              style={{
+                border: 0,
+                filter: "invert(0.92) hue-rotate(180deg) saturate(0.3) brightness(0.6)",
+              }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Venue Location"
+            />
+          </div>
+        </motion.div>
       </div>
-
-      {/* Accommodation (Bottom) */}
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="w-full max-w-4xl bg-white/50 backdrop-blur-md rounded-3xl p-10 border border-brand-sage/40 shadow-sm text-center mb-12 relative overflow-hidden"
-      >
-        <div className="absolute -left-20 -bottom-20 w-64 h-64 bg-brand-peach/40 rounded-full blur-3xl pointer-events-none"></div>
-        <h2 className="font-serif text-3xl text-text-main mb-4 relative z-10">Where to Stay</h2>
-        <p className="text-text-muted mb-8 leading-relaxed max-w-2xl mx-auto relative z-10">
-          We are working to ensure a comfortable stay for all our guests across various beautiful properties near the venue. We will reach out to you separately with your personalized hotel assignment and room details closer to the date. Check-ins begin at {dates.checkInTime} on {dates.checkInDate}.
-        </p>
-        <button disabled className="relative z-10 px-8 py-3 bg-white border border-brand-sage/50 text-brand-sage/90 rounded-full tracking-widest uppercase text-sm font-medium cursor-not-allowed shadow-sm">
-          Details Coming Soon
-        </button>
-      </motion.div>
-
-      {/* Map Embed */}
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="w-full max-w-5xl mt-8 bg-white/50 backdrop-blur-md rounded-3xl p-4 border border-white/40 shadow-sm"
-      >
-        <h2 className="font-serif text-2xl text-text-main mb-4 px-4">{location.weddingVenue} Location</h2>
-        <div className="w-full h-[400px] rounded-2xl overflow-hidden shadow-inner bg-gray-100">
-          <iframe 
-            src={location.mapEmbedUrl}
-            width="100%" 
-            height="100%" 
-            style={{ border: 0 }} 
-            allowFullScreen 
-            loading="lazy" 
-            referrerPolicy="no-referrer-when-downgrade"
-          ></iframe>
-        </div>
-      </motion.div>
     </main>
   );
 }
