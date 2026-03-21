@@ -3,12 +3,14 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import { useAuthStore } from '@/lib/authStore';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const { isAuthenticated, logout } = useAuthStore();
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -19,6 +21,12 @@ export default function Navbar() {
     { name: 'RSVP', path: '/rsvp' },
   ];
 
+  if (isAuthenticated) {
+    links.push({ name: 'Dashboard', path: '/dashboard' });
+  } else {
+    links.push({ name: 'Member Login', path: '/login' });
+  }
+
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-white/60 backdrop-blur-lg border-b border-white/20 pr-6 pl-0 h-20 md:h-24 flex items-center justify-between shadow-sm">
       {/* Branding */}
@@ -27,22 +35,30 @@ export default function Navbar() {
       </Link>
       
       {/* Desktop Links */}
-      <div className="hidden md:flex items-center gap-8 font-sans text-sm tracking-widest uppercase text-text-muted">
+      <div className="hidden md:flex items-center gap-8 font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-text-muted">
         {links.map(link => {
           const isActive = pathname === link.path;
           return (
             <Link 
               key={link.name} 
               href={link.path} 
-              className={`transition-colors ${isActive ? 'text-brand-gold font-bold scale-105 transform' : 'hover:text-text-main'}`}
+              className={`transition-all relative py-2 ${isActive ? 'text-brand-gold' : 'hover:text-text-main'}`}
             >
               {link.name}
               {isActive && (
-                 <motion.div layoutId="navbar-indicator" className="h-[2px] w-full bg-brand-gold mt-1 rounded-full" />
+                 <motion.div layoutId="navbar-indicator" className="absolute -bottom-1 left-0 right-0 h-[2px] bg-brand-gold rounded-full" />
               )}
             </Link>
           );
         })}
+        {isAuthenticated && (
+          <button 
+            onClick={() => logout()}
+            className="bg-brand-peach/30 border border-brand-gold/20 px-4 py-2 rounded-full text-brand-gold hover:bg-brand-peach/50 transition-colors"
+          >
+            Logout
+          </button>
+        )}
       </div>
 
       {/* Mobile Menu Button */}
@@ -73,15 +89,23 @@ export default function Navbar() {
                   key={link.name} 
                   href={link.path} 
                   onClick={toggleMenu}
-                  className={`font-serif text-4xl tracking-widest transition-colors flex flex-col items-center ${isActive ? 'text-brand-gold font-bold' : 'text-text-main hover:text-brand-sage'}`}
+                  className={`font-serif text-4xl tracking-widest transition-colors flex flex-col items-center ${isActive ? 'text-brand-gold font-bold underline underline-offset-8' : 'text-text-main hover:text-brand-sage'}`}
                 >
                   {link.name}
-                  {isActive && (
-                     <motion.div layoutId="mobile-navbar-indicator" className="h-[2px] w-12 bg-brand-gold mt-3 rounded-full" />
-                  )}
                 </Link>
               );
             })}
+            {isAuthenticated && (
+              <button 
+                onClick={() => {
+                  logout();
+                  toggleMenu();
+                }}
+                className="font-serif text-2xl text-brand-gold border-2 border-brand-gold px-8 py-3 rounded-full hover:bg-brand-gold hover:text-white transition-all uppercase tracking-widest"
+              >
+                Logout
+              </button>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
