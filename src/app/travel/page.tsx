@@ -38,7 +38,7 @@ export default function TravelPage() {
           className="mb-20"
         >
           <div className="flex items-center gap-4 mb-10">
-            <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ border: `1px solid var(--theme-accent-faint)` }}>
+            <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ border: `1px solid var(--theme-accent-muted)` }}>
               <Plane className="w-3.5 h-3.5" style={{ color: "var(--theme-accent)" }} />
             </div>
             <h2 className="font-display font-light text-2xl" style={{ color: "var(--theme-text)" }}>By Air</h2>
@@ -73,7 +73,7 @@ export default function TravelPage() {
                   <ul className="space-y-1.5">
                     {airport.trains.map((train, i) => (
                       <li key={i} className="text-xs flex items-start gap-2" style={{ color: "var(--theme-text-body)" }}>
-                        <span style={{ color: "var(--theme-accent-faint)", marginTop: 2, fontSize: 6 }}>◆</span>
+                        <span style={{ color: "var(--theme-accent-muted)", marginTop: 2, fontSize: 6 }}>◆</span>
                         {train}
                       </li>
                     ))}
@@ -101,7 +101,7 @@ export default function TravelPage() {
           className="mb-20"
         >
           <div className="flex items-center gap-4 mb-10">
-            <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ border: `1px solid var(--theme-accent-faint)` }}>
+            <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ border: `1px solid var(--theme-accent-muted)` }}>
               <TrainFront className="w-3.5 h-3.5" style={{ color: "var(--theme-accent)" }} />
             </div>
             <h2 className="font-display font-light text-2xl" style={{ color: "var(--theme-text)" }}>By Train</h2>
@@ -119,7 +119,7 @@ export default function TravelPage() {
                 Lalitpur Junction is a major hub with direct connectivity from New Delhi, Mumbai, Bhopal, and other major cities across India.
               </p>
               <div className="flex flex-wrap gap-3">
-                <span className="text-[9px] uppercase tracking-[0.2em] px-4 py-2 rounded-full flex items-center gap-1.5" style={{ border: `1px solid var(--theme-accent-faint)`, color: "var(--theme-event-number)" }}>
+                <span className="text-[9px] uppercase tracking-[0.2em] px-4 py-2 rounded-full flex items-center gap-1.5" style={{ border: `1px solid var(--theme-accent-muted)`, color: "var(--theme-event-number)" }}>
                   <MapPin className="w-3 h-3" /> {location.trainStationDistance} to venue
                 </span>
                 <span className="text-[9px] uppercase tracking-[0.2em] px-4 py-2 rounded-full" style={{ border: "1px solid var(--theme-divider)", color: "var(--theme-text-muted)" }}>
@@ -139,7 +139,7 @@ export default function TravelPage() {
           className="mb-20"
         >
           <div className="flex items-center gap-4 mb-10">
-            <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ border: `1px solid var(--theme-accent-faint)` }}>
+            <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ border: `1px solid var(--theme-accent-muted)` }}>
               <Hotel className="w-3.5 h-3.5" style={{ color: "var(--theme-accent)" }} />
             </div>
             <h2 className="font-display font-light text-2xl" style={{ color: "var(--theme-text)" }}>Where to Stay</h2>
@@ -170,7 +170,7 @@ export default function TravelPage() {
           className="mb-10"
         >
           <div className="flex items-center gap-4 mb-10">
-            <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ border: `1px solid var(--theme-accent-faint)` }}>
+            <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ border: `1px solid var(--theme-accent-muted)` }}>
               <MapPin className="w-3.5 h-3.5" style={{ color: "var(--theme-accent)" }} />
             </div>
             <h2 className="font-display font-light text-2xl" style={{ color: "var(--theme-text)" }}>{location.weddingVenue}</h2>

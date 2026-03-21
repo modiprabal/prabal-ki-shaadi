@@ -55,7 +55,7 @@ export default function RsvpPage() {
           >
             <div
               className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5"
-              style={{ border: `1px solid var(--theme-accent-faint)`, color: "var(--theme-accent)" }}
+              style={{ border: `1px solid var(--theme-accent-muted)`, color: "var(--theme-accent)" }}
             >
               <span className="text-2xl">✓</span>
             </div>

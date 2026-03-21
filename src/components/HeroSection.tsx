@@ -46,7 +46,7 @@ function Countdown({ targetDate }: { targetDate: string }) {
             </span>
           </div>
           {i < 3 && (
-            <span className="text-sm font-light -mt-2.5" style={{ color: "var(--theme-accent-faint)" }}>:</span>
+            <span className="text-sm font-light -mt-2.5" style={{ color: "var(--theme-accent-muted)" }}>:</span>
           )}
         </div>
       ))}
@@ -179,9 +179,9 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 1, type: "spring", stiffness: 80 }}
             className="flex items-center gap-3 my-1"
           >
-            <div className="w-8 lg:w-12 h-[1px]" style={{ background: `linear-gradient(to right, transparent, var(--theme-accent-faint))` }} />
+            <div className="w-8 lg:w-12 h-[1px]" style={{ background: `linear-gradient(to right, transparent, var(--theme-accent-muted))` }} />
             <span className="font-display italic text-2xl lg:text-3xl" style={{ color: "var(--theme-accent)" }}>&amp;</span>
-            <div className="w-8 lg:w-12 h-[1px]" style={{ background: `linear-gradient(to left, transparent, var(--theme-accent-faint))` }} />
+            <div className="w-8 lg:w-12 h-[1px]" style={{ background: `linear-gradient(to left, transparent, var(--theme-accent-muted))` }} />
           </motion.div>
 
           <motion.h1
@@ -294,7 +294,7 @@ export default function HeroSection() {
           animate={{ y: [0, 4, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           className="w-[1px] h-5"
-          style={{ background: `linear-gradient(to bottom, var(--theme-accent-faint), transparent)` }}
+          style={{ background: `linear-gradient(to bottom, var(--theme-accent-muted), transparent)` }}
         />
       </motion.div>
     </section>
