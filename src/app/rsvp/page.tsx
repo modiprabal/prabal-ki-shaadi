@@ -2,9 +2,11 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { weddingConfig } from "@/config/weddingConfig";
 
 export default function RsvpPage() {
   const [submitted, setSubmitted] = useState(false);
+  const { dates } = weddingConfig;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,7 +23,7 @@ export default function RsvpPage() {
         className="bg-white/60 backdrop-blur-xl border border-white/50 rounded-3xl p-8 md:p-12 shadow-xl max-w-xl w-full"
       >
         <h1 className="font-serif text-3xl md:text-4xl text-text-main mb-2 text-center">RSVP</h1>
-        <p className="text-text-muted text-center mb-10">Kindly respond by October 15, 2026</p>
+        <p className="text-text-muted text-center mb-10">Kindly respond by {dates.rsvpDeadline}</p>
 
         {submitted ? (
           <motion.div 

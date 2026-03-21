@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { MOCK_BUDGET, BudgetItem } from "@/lib/mockData";
 import { useAuthStore } from "@/lib/authStore";
