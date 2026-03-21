@@ -123,13 +123,30 @@ export default function HeroSection() {
           style={{ y: textY }}
           className="flex-1 flex flex-col items-center justify-center h-full px-6 md:px-8 will-change-transform"
         >
+          {/* ॐ — decorative with flanking lines */}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: 0.1 }}
+            className="flex items-center gap-4 mb-3"
+          >
+            <div className="w-10 lg:w-16 h-[1px]" style={{ background: "linear-gradient(to right, transparent, rgba(184,150,90,0.4))" }} />
+            <span
+              className="font-hindi text-2xl md:text-3xl"
+              style={{ color: "rgba(184,150,90,0.85)" }}
+            >
+              ॐ
+            </span>
+            <div className="w-10 lg:w-16 h-[1px]" style={{ background: "linear-gradient(to left, transparent, rgba(184,150,90,0.4))" }} />
+          </motion.div>
+
           {/* शुभ विवाह */}
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.5, delay: 0.3 }}
-            className="font-hindi text-base md:text-lg tracking-[0.2em] mb-4"
-            style={{ color: "rgba(184,150,90,0.7)" }}
+            className="font-hindi text-sm md:text-base tracking-[0.35em] mb-6 text-center uppercase"
+            style={{ color: "rgba(184,150,90,0.55)" }}
           >
             शुभ विवाह
           </motion.p>
