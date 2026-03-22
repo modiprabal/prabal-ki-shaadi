@@ -180,7 +180,7 @@ export default function HeroSection() {
             className="flex items-center gap-3 my-1"
           >
             <div className="w-8 lg:w-12 h-[1px]" style={{ background: `linear-gradient(to right, transparent, var(--theme-accent-muted))` }} />
-            <span className="font-display italic text-2xl lg:text-3xl" style={{ color: "var(--theme-accent)" }}>&amp;</span>
+            <span className="font-display italic text-l lg:text-xl" style={{ color: "var(--theme-accent)" }}>WEDS</span>
             <div className="w-8 lg:w-12 h-[1px]" style={{ background: `linear-gradient(to left, transparent, var(--theme-accent-muted))` }} />
           </motion.div>
 
