@@ -41,7 +41,7 @@ export default function Footer() {
 
         {/* Right — Hashtag */}
         <p className="text-[9px] font-sans uppercase tracking-[0.3em]" style={{ color: "var(--theme-text-dim)" }}>
-          #PrabalKiShaadi
+          #PrabalKiShreya
         </p>
       </div>
     </footer>

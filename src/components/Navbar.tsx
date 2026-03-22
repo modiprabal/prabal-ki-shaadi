@@ -84,7 +84,8 @@ export default function Navbar() {
   };
 
   return (
-    <nav
+    <>
+      <nav
       className={`fixed top-0 inset-x-0 z-50 flex items-center justify-between px-6 md:px-10 transition-all duration-700 ${
         scrolled ? "h-14 backdrop-blur-xl" : "h-16 md:h-20 bg-transparent"
       }`}
@@ -92,15 +93,23 @@ export default function Navbar() {
         background: scrolled ? "color-mix(in srgb, var(--theme-bg) 90%, transparent)" : "transparent",
       }}
     >
-      {/* Monogram */}
+      {/* Logo */}
       <Link href="/" className="relative z-50">
-        <motion.span
-          className="font-display font-light text-xl tracking-[0.15em]"
-          style={{ color: "var(--theme-accent)" }}
+        <motion.div
+          className="w-16 h-16 md:w-20 md:h-16"
+          style={{
+            backgroundColor: "var(--theme-accent)",
+            maskImage: "url('/logo-transparent.png')",
+            WebkitMaskImage: "url('/logo-transparent.png')",
+            maskSize: "contain",
+            WebkitMaskSize: "contain",
+            maskRepeat: "no-repeat",
+            WebkitMaskRepeat: "no-repeat",
+            maskPosition: "center left",
+            WebkitMaskPosition: "center left",
+          }}
           whileHover={{ opacity: 0.7 }}
-        >
-          P&S
-        </motion.span>
+        />
       </Link>
 
       {/* Desktop */}
@@ -184,52 +193,42 @@ export default function Navbar() {
         </button>
       </div>
 
+      </nav>
+
       {/* Mobile sidebar */}
       <AnimatePresence>
         {isOpen && (
-          <>
-            {/* Backdrop */}
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm md:hidden"
-              onClick={() => setIsOpen(false)}
-            />
-            {/* Sidebar */}
-            <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", stiffness: 300, damping: 35 }}
-              className="fixed top-0 right-0 z-40 w-72 h-full flex flex-col pt-24 px-8 gap-8 md:hidden"
-              style={{ background: "var(--theme-bg-sidebar)" }}
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-10 md:hidden"
+              style={{ backgroundColor: "var(--theme-bg)" }}
             >
               {links.map((link, i) => (
                 <motion.div
                   key={link.name}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.05 * i, duration: 0.4 }}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.1 + i * 0.05, duration: 0.4 }}
                 >
                   <Link
                     href={link.path}
                     onClick={(e) => handleNavClick(e, link)}
-                    className="font-display font-light text-2xl tracking-[0.1em] transition-colors duration-300 block"
+                    className="font-display font-light text-3xl tracking-[0.1em] transition-colors duration-300 block text-center"
                     style={{ color: isActive(link) ? "var(--theme-accent)" : "var(--theme-accent-nav)" }}
                   >
                     {link.name}
                     {isActive(link) && (
-                      <div className="w-6 h-[1px] mt-2" style={{ background: "var(--theme-accent)" }} />
+                      <div className="w-8 h-[1px] mx-auto mt-3" style={{ background: "var(--theme-accent)" }} />
                     )}
                   </Link>
                 </motion.div>
               ))}
             </motion.div>
-          </>
         )}
       </AnimatePresence>
-    </nav>
+    </>
   );
 }

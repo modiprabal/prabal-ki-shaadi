@@ -40,9 +40,9 @@ export default function VenueSection() {
 
             <div className="flex gap-12 mb-10">
               {[
-                { n: "4", l: "Events" },
+                { n: "6", l: "Events" },
                 { n: "2", l: "Days" },
-                { n: "24", l: "June" },
+                { n: "23-24", l: "June" },
               ].map(({ n, l }) => (
                 <div key={l}>
                   <span className="font-display font-light text-3xl md:text-4xl block" style={{ color: "var(--theme-text)" }}>
