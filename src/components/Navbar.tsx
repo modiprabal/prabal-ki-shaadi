@@ -94,7 +94,7 @@ export default function Navbar() {
       }}
     >
       {/* Logo */}
-      <Link href="/" className="relative z-50">
+      <Link href="/" className="relative z-50 md:-ml-10">
         <motion.div
           className="w-16 h-16 md:w-20 md:h-16"
           style={{
