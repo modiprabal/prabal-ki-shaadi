@@ -9,13 +9,37 @@ export default function RsvpPage() {
   const [loading, setLoading] = useState(false);
   const { dates, groom, bride } = weddingConfig;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get("name"),
+      attending: formData.get("attending"),
+      guests: formData.get("guests"),
+      requests: formData.get("requests"),
+    };
+
+    try {
+      const res = await fetch("/api/rsvp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        const error = await res.json();
+        alert(`Error: ${error.error}`);
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Failed to submit RSVP. Please try again.");
+    } finally {
       setLoading(false);
-      setSubmitted(true);
-    }, 1000);
+    }
   };
 
   return (
@@ -80,6 +104,7 @@ export default function RsvpPage() {
               </label>
               <input
                 required
+                name="name"
                 type="text"
                 placeholder="Enter your name"
                 className="w-full rounded-xl px-4 py-3.5 text-sm font-sans outline-none transition-all duration-300 focus:ring-1"
@@ -97,6 +122,7 @@ export default function RsvpPage() {
                 Will you attend?
               </label>
               <select
+                name="attending"
                 className="w-full rounded-xl px-4 py-3.5 text-sm font-sans outline-none transition-all duration-300 appearance-none cursor-pointer"
                 style={{
                   background: "var(--theme-divider)",
@@ -116,6 +142,7 @@ export default function RsvpPage() {
               </label>
               <input
                 type="number"
+                name="guests"
                 min="1"
                 max="10"
                 defaultValue="1"
@@ -134,6 +161,7 @@ export default function RsvpPage() {
                 Special Requests
               </label>
               <textarea
+                name="requests"
                 rows={3}
                 placeholder="Dietary needs, accessibility requirements, etc."
                 className="w-full rounded-xl px-4 py-3.5 text-sm font-sans outline-none transition-all duration-300 resize-none"
