@@ -13,17 +13,47 @@ export default function RSVPPage() {
     e.preventDefault();
     setIsSubmitting(true);
     
+    // Set a long timeout for Google Scripts (60s)
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 60000);
+    
     try {
       const formData = new FormData(e.currentTarget);
-      await fetch(process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL as string, {
+      const data = {
+        name: formData.get("name"),
+        contact: formData.get("contact"),
+        guests: formData.get("guests"),
+        attending: formData.get("attending"),
+        message: formData.get("message"),
+      };
+
+      const response = await fetch('/api/rsvp', {
         method: 'POST',
-        body: formData,
-        mode: 'no-cors'
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+        signal: controller.signal,
       });
-      setSubmitSuccess(true);
-    } catch (error) {
+
+      clearTimeout(timeoutId);
+      const result = await response.json();
+
+      if (result.success) {
+        setSubmitSuccess(true);
+      } else {
+        throw new Error(result.error || 'Failed to submit RSVP');
+      }
+    } catch (error: any) {
+      clearTimeout(timeoutId);
       console.error('Error submitting form:', error);
-      alert('There was an error submitting your RSVP. Please try again or contact us directly.');
+      
+      if (error.name === 'AbortError') {
+        // If it timed out but we saw 200s in terminal, it likely still worked
+        alert('The submission is taking a bit longer than usual. Please check your sheet or try again in a moment.');
+      } else {
+        alert('There was an error submitting your RSVP. Please try again or contact us directly.');
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -105,10 +135,14 @@ export default function RSVPPage() {
                       
                       {/* Contact */}
                       <div className="relative group">
-                        <label className="block text-[10px] font-plus-jakarta text-[#E8DCC4] uppercase tracking-[0.3em] mb-3 font-semibold">Contact Email or Phone</label>
+                        <label 
+                          suppressHydrationWarning 
+                          className="block text-[10px] font-plus-jakarta text-[#E8DCC4] uppercase tracking-[0.3em] mb-3 font-semibold"
+                        >
+                          Contact Email or Phone (Optional)
+                        </label>
                         <input 
                           name="contact"
-                          required
                           className="w-full bg-transparent border-0 border-b border-[#FCFAF8]/20 py-3 focus:ring-0 focus:border-[#E8DCC4] transition-colors font-noto-serif text-xl text-[#FCFAF8] placeholder-[#FCFAF8]/20 focus:outline-none" 
                           placeholder="For updates" 
                           type="text" 
@@ -148,11 +182,11 @@ export default function RSVPPage() {
                       
                       {/* Note */}
                       <div className="relative group">
-                        <label className="block text-[10px] font-plus-jakarta text-[#E8DCC4] uppercase tracking-[0.3em] mb-3 font-semibold">Dietary Notes / Message</label>
+                        <label className="block text-[10px] font-plus-jakarta text-[#E8DCC4] uppercase tracking-[0.3em] mb-3 font-semibold">Special Request</label>
                         <textarea 
                           name="message"
                           className="w-full bg-transparent border-0 border-b border-[#FCFAF8]/20 py-3 focus:ring-0 focus:border-[#E8DCC4] transition-colors font-noto-serif text-xl text-[#FCFAF8] placeholder-[#FCFAF8]/20 resize-none h-20 focus:outline-none" 
-                          placeholder="Optional notes for the hosts..."
+                          placeholder="Any special requests or notes for us..."
                         ></textarea>
                       </div>
                       

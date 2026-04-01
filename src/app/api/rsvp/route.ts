@@ -15,15 +15,29 @@ export async function POST(req: Request) {
 
     // Forward the payload to the Google Apps Script Web App
     const response = await fetch(scriptUrl, {
-      method: 'POST',
+      method: "POST",
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8",
+      },
       body: JSON.stringify(body),
-      // Note: Apps Script sometimes fails with strict application/json headers when fetched server-to-server depending on redirects
+      redirect: "follow",
     });
 
-    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(`Google Script returned status: ${response.status}`);
+    }
 
-    if (!data.success) {
-      throw new Error(data.error || 'Unknown error returned from Google Apps script');
+    const responseText = await response.text();
+    let data;
+    try {
+      data = JSON.parse(responseText);
+    } catch (e) {
+      // If it's not JSON, it might just be the response from the script as text
+      data = { result: responseText, success: responseText.toLowerCase().includes("success") };
+    }
+
+    if (data.result === "error" || data.status === "error" || (data.success === false)) {
+      throw new Error(data.error || "Google Apps script returned an error");
     }
 
     return NextResponse.json({ success: true, data });
