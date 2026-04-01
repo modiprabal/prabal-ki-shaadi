@@ -129,23 +129,13 @@ export default function EventsTimeline() {
                       </div>
 
                       <div className="mt-8 grid gap-4 border-t border-[#E8DCC4] pt-5 md:grid-cols-[1fr_auto] md:items-end">
-                        <div className="grid gap-6 sm:grid-cols-2">
-                          <div>
-                            <p className="text-[11px] uppercase tracking-[0.28em] text-[#8A252C] font-plus-jakarta">
-                              Venue
-                            </p>
-                            <p className="mt-2 text-sm text-[#2C1E16] font-noto-serif italic">
-                              {event.venue}
-                            </p>
-                          </div>
-                          <div>
-                            <p className="text-[11px] uppercase tracking-[0.28em] text-[#8A252C] font-plus-jakarta">
-                              Note
-                            </p>
-                            <p className="mt-2 text-sm text-[#2C1E16] font-noto-serif italic">
-                              Festive attire recommended.
-                            </p>
-                          </div>
+                        <div>
+                          <p className="text-[11px] uppercase tracking-[0.28em] text-[#8A252C] font-plus-jakarta">
+                            Venue
+                          </p>
+                          <p className="mt-2 text-sm text-[#2C1E16] font-noto-serif italic">
+                            {event.venue}
+                          </p>
                         </div>
 
                         <a
