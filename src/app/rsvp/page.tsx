@@ -86,7 +86,7 @@ export default function RSVPPage() {
                 </span>
                 <h1 className="font-noto-serif text-6xl md:text-8xl text-[#2C1E16] leading-[1.05] tracking-[-0.03em] mb-8">
                   Your <br className="hidden md:block"/>
-                  Presence is<br className="hidden md:block"/>
+                  Presence is <br className="hidden md:block"/>
                   <span className="italic text-[#8A252C] font-light">Requested.</span>
                 </h1>
                 <p className="font-plus-jakarta text-[#2C1E16]/70 leading-[1.8] font-light text-lg max-w-md mx-auto lg:mx-0">
