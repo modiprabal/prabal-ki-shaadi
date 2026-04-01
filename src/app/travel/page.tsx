@@ -158,7 +158,7 @@ export default function TravelPage() {
             </p>
             <div className="mt-6 flex flex-col justify-between gap-10 md:flex-row md:items-end">
               <div className="max-w-3xl">
-                <h1 className="font-noto-serif text-5xl leading-[1.1] tracking-[-0.02em] text-[#8A252C] md:text-7xl lg:text-8xl">
+                <h1 className="font-noto-serif text-5xl leading-[1.1] tracking-[-0.02em] text-[#8A252C] md:text-6xl lg:text-7xl">
                   Getting to the <br /> Heart of Bundelkhand.
                 </h1>
                 <p className="mt-8 max-w-2xl text-lg font-light leading-[1.8] text-[#2C1E16]/80 font-plus-jakarta">
