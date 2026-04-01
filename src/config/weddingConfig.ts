@@ -55,9 +55,9 @@ export const weddingConfig = {
   },
   events: [
     {
-      title: "Haldi & Mehendi",
+      title: "Haldi",
       date: "23 June 2026",
-      time: "11:00 AM",
+      time: "12:00 PM",
       venue: "Shubh Heaven Resort",
       mapUrl: "https://www.google.com/maps/search/?api=1&query=Shubh+Heaven+Resort+Lalitpur",
       description: "A vibrant morning of colors, floral jewelry, and traditional music to kick off the celebrations."
@@ -65,7 +65,7 @@ export const weddingConfig = {
     {
       title: "Engagement",
       date: "23 June 2026",
-      time: "04:00 PM",
+      time: "07:00 PM",
       venue: "Shubh Heaven Resort",
       mapUrl: "https://www.google.com/maps/search/?api=1&query=Shubh+Heaven+Resort+Lalitpur",
       description: "The formal ring ceremony where both families come together to bless the couple."
@@ -73,7 +73,7 @@ export const weddingConfig = {
     {
       title: "Sangeet Night",
       date: "23 June 2026",
-      time: "07:00 PM",
+      time: "08:00 PM",
       venue: "Shubh Heaven Resort",
       mapUrl: "https://www.google.com/maps/search/?api=1&query=Shubh+Heaven+Resort+Lalitpur",
       description: "Dance the night away with performances from friends and family under the stars."
@@ -81,26 +81,34 @@ export const weddingConfig = {
     {
       title: "Baarat",
       date: "24 June 2026",
-      time: "02:00 PM",
+      time: "10:00 AM",
       venue: "Shubh Heaven Resort",
       mapUrl: "https://www.google.com/maps/search/?api=1&query=Shubh+Heaven+Resort+Lalitpur",
       description: "The groom's grand procession arrives with music, dancing, and celebrations."
     },
     {
-      title: "Wedding Ceremony",
+      title: "Varmala",
       date: "24 June 2026",
-      time: "05:00 PM",
+      time: "12:00 PM",
       venue: "Shubh Heaven Resort",
       mapUrl: "https://www.google.com/maps/search/?api=1&query=Shubh+Heaven+Resort+Lalitpur",
-      description: "Join us as we take our sacred vows around the holy fire in a traditional ceremony."
+      description: "The beautiful exchange of garlands between the bride and groom."
     },
     {
       title: "Grand Reception",
       date: "24 June 2026",
-      time: "08:30 PM",
+      time: "10:00 AM - 02:00 PM",
       venue: "Shubh Heaven Resort",
       mapUrl: "https://www.google.com/maps/search/?api=1&query=Shubh+Heaven+Resort+Lalitpur",
-      description: "A night of fine dining, cocktails, and celebration to conclude our wedding festivities."
+      description: "A celebratory lunch to conclude our wedding festivities with family and friends."
+    },
+    {
+      title: "Phere & Vidai",
+      date: "24 June 2026",
+      time: "04:00 PM",
+      venue: "Shubh Heaven Resort",
+      mapUrl: "https://www.google.com/maps/search/?api=1&query=Shubh+Heaven+Resort+Lalitpur",
+      description: "Join us as we take our sacred vows around the holy fire, followed by a tearful yet joyous farewell."
     }
   ]
 };
