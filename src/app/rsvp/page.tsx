@@ -31,139 +31,142 @@ export default function RSVPPage() {
 
   return (
     <>
-      <main className="pt-32 pb-20 min-h-screen relative">
-        {/* Background aesthetic blobs */}
-        <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-br from-[#ffb3ac]/10 to-transparent -z-10 blur-3xl rounded-b-full"></div>
-        <div className="absolute top-80 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-[#ffdea5]/10 to-transparent -z-10 blur-3xl rounded-full"></div>
-
-        {/* Hero Meta */}
-        <div className="text-center px-6 mb-16">
-          <span className="font-label text-secondary tracking-[0.2em] uppercase text-xs mb-6 block">Your Presence is Requested</span>
-          <h1 className="font-headline text-5xl md:text-7xl text-on-surface leading-tight tracking-tight max-w-2xl mx-auto">
-            Celebrate <br />
-            <span className="italic font-normal text-primary">Our Union.</span>
-          </h1>
+      <main className="bg-[#FCFAF8] pb-24 pt-28 md:pt-32 text-[#2C1E16] font-body selection:bg-[#E8DCC4] selection:text-[#8A252C] min-h-screen relative overflow-hidden">
+        
+        {/* Global Grid Overlay for Minimalist framing */}
+        <div className="fixed inset-0 pointer-events-none z-0 hidden lg:block">
+          <div className="absolute left-12 top-0 bottom-0 w-px bg-[#E8DCC4]/50"></div>
+          <div className="absolute right-12 top-0 bottom-0 w-px bg-[#E8DCC4]/50"></div>
         </div>
 
-        <section className="max-w-screen-xl mx-auto px-6">
-          <div className="bg-surface-container-lowest rounded-[3rem] shadow-[0_30px_60px_rgba(30,27,19,0.06)] overflow-hidden border border-outline-variant/10">
-            <div className="flex flex-col lg:flex-row">
-              {/* RSVP Form Column */}
-              <div className="w-full lg:w-5/12 p-10 md:p-16 lg:p-20 bg-white relative">
-                <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: "radial-gradient(#af101a 1px, transparent 1px)", backgroundSize: "24px 24px" }}></div>
-                
-                <h2 className="font-headline text-3xl text-on-surface mb-2 relative z-10">RSVP</h2>
-                <p className="font-body text-on-surface-variant mb-12 relative z-10">Kindly respond by {dates.rsvpDeadline}</p>
-
-                {submitSuccess ? (
-                  <div className="relative z-10 p-8 bg-surface-container rounded-2xl border border-primary/20 text-center animate-pulse">
-                     <span className="material-symbols-outlined text-4xl text-primary mb-4">check_circle</span>
-                     <h3 className="font-headline text-2xl text-on-surface mb-2">Thank You!</h3>
-                     <p className="text-on-surface-variant">We have received your RSVP and look forward to celebrating with you.</p>
-                  </div>
-                ) : (
-                  <form className="relative z-10 space-y-8" onSubmit={handleSubmit}>
-                    {/* Name */}
-                    <div className="relative group">
-                      <label className="block text-xs font-label text-tertiary uppercase tracking-wider mb-2 font-semibold">Your Full Name</label>
-                      <input 
-                        name="name"
-                        required
-                        className="w-full bg-transparent border-0 border-b border-outline/50 py-3 focus:ring-0 focus:border-primary transition-colors font-body text-lg text-on-surface placeholder-on-surface-variant/40 hover:border-outline" 
-                        placeholder="e.g. Rahul Sharma" 
-                        type="text" 
-                      />
-                    </div>
-                    {/* Contact */}
-                    <div className="relative group">
-                      <label className="block text-xs font-label text-tertiary uppercase tracking-wider mb-2 font-semibold">Email or Phone</label>
-                      <input 
-                        name="contact"
-                        required
-                        className="w-full bg-transparent border-0 border-b border-outline/50 py-3 focus:ring-0 focus:border-primary transition-colors font-body text-lg text-on-surface placeholder-on-surface-variant/40 hover:border-outline" 
-                        placeholder="For any crucial updates" 
-                        type="text" 
-                      />
-                    </div>
-                    {/* Two Column details */}
-                    <div className="grid grid-cols-2 gap-8">
-                      <div className="relative group">
-                        <label className="block text-xs font-label text-tertiary uppercase tracking-wider mb-2 font-semibold">Guests</label>
-                        <select 
-                           name="guests"
-                           className="w-full bg-transparent border-0 border-b border-outline/50 py-3 focus:ring-0 focus:border-primary transition-colors font-body text-lg text-on-surface appearance-none hover:border-outline cursor-pointer"
-                        >
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4+">Family (4+)</option>
-                        </select>
-                         <span className="material-symbols-outlined absolute right-0 top-9 text-outline-variant pointer-events-none">expand_more</span>
-                      </div>
-                      <div className="relative group">
-                        <label className="block text-xs font-label text-tertiary uppercase tracking-wider mb-2 font-semibold">Attending?</label>
-                        <select 
-                          name="attending"
-                          className="w-full bg-transparent border-0 border-b border-outline/50 py-3 focus:ring-0 focus:border-primary transition-colors font-body text-lg text-on-surface appearance-none hover:border-outline cursor-pointer"
-                        >
-                          <option value="Joyfully Accepts">Joyfully Accepts</option>
-                          <option value="Regretfully Declines">Regretfully Declines</option>
-                        </select>
-                         <span className="material-symbols-outlined absolute right-0 top-9 text-outline-variant pointer-events-none">expand_more</span>
-                      </div>
-                    </div>
-                    {/* Note */}
-                    <div className="relative group">
-                      <label className="block text-xs font-label text-tertiary uppercase tracking-wider mb-2 font-semibold">Dietary Notes / Message</label>
-                      <textarea 
-                        name="message"
-                        className="w-full bg-transparent border-0 border-b border-outline/50 py-3 focus:ring-0 focus:border-primary transition-colors font-body text-lg text-on-surface placeholder-on-surface-variant/40 hover:border-outline resize-none h-20" 
-                        placeholder="Any special requests?"
-                      ></textarea>
-                    </div>
-                    {/* Submit */}
-                    <button 
-                      disabled={isSubmitting}
-                      className="w-full mt-10 bg-[#af101a] text-[#ffffff] shadow-[0_10px_20px_rgba(175,16,26,0.3)] hover:bg-[#930010] active:scale-[0.98] py-5 rounded-full font-plus-jakarta font-bold tracking-widest uppercase transition-all flex justify-center items-center gap-2 cursor-pointer disabled:opacity-50" 
-                      type="submit"
-                    >
-                      {isSubmitting ? "Submitting..." : "Send RSVP"}
-                      {!isSubmitting && <span className="material-symbols-outlined font-light text-xl">favorite</span>}
-                    </button>
-                  </form>
-                )}
+        {/* Editorial Layout: Hero & Velvet Form Card */}
+        <section className="max-w-screen-xl mx-auto px-6 relative z-10 pt-10">
+          <div className="flex flex-col lg:flex-row gap-16 lg:gap-8 items-center lg:items-start justify-between">
+            
+            {/* Left: Typographic Display */}
+            <div className="w-full lg:w-5/12 relative mt-4 md:mt-16 text-center lg:text-left">
+              {/* Massive faded watermark */}
+              <div className="absolute top-0 right-0 lg:left-0 -translate-y-16 translate-x-12 lg:-translate-x-12 pointer-events-none opacity-[0.03] select-none text-[#8F4E00]">
+                <span className="material-symbols-outlined text-[300px] md:text-[400px]">filter_vintage</span>
               </div>
-
-              {/* Venue Map Info Column */}
-              <div className="w-full lg:w-7/12 relative">
-                {/* Embedded dynamic Map */}
-                <iframe 
-                  src="https://maps.google.com/maps?q=Shubh%20Heaven%20Resort,%20Lalitpur,%20Uttar%20Pradesh&t=&z=14&ie=UTF8&iwloc=&output=embed" 
-                  width="100%" 
-                  height="100%" 
-                  style={{ border: 0, minHeight: '500px' }} 
-                  allowFullScreen={true} 
-                  loading="lazy" 
-                  referrerPolicy="no-referrer-when-downgrade" 
-                  className="w-full h-full object-cover opacity-90 saturate-50 hover:saturate-100 transition-all duration-1000"
-                ></iframe>
+              
+              <div className="relative z-10">
+                <span className="font-plus-jakarta text-xs uppercase tracking-[0.4em] text-[#8F4E00] mb-8 block">
+                  Joyfully Invited
+                </span>
+                <h1 className="font-noto-serif text-6xl md:text-8xl text-[#2C1E16] leading-[1.05] tracking-[-0.03em] mb-8">
+                  Your <br className="hidden md:block"/>
+                  Presence <br className="hidden md:block"/>
+                  <span className="italic text-[#8A252C] font-light">is Requested.</span>
+                </h1>
+                <p className="font-plus-jakarta text-[#2C1E16]/70 leading-[1.8] font-light text-lg max-w-md mx-auto lg:mx-0">
+                  We kindly request the honor of your company as we celebrate our union. Please return this RSVP card by <span className="text-[#8F4E00] font-semibold">{dates.rsvpDeadline}</span>.
+                </p>
                 
-                {/* Floating Venue Card on Map */}
-                <div className="absolute inset-x-8 bottom-8 md:inset-x-auto md:right-8 md:bottom-8 bg-[#fff8ef]/95 backdrop-blur-md p-8 rounded-3xl shadow-2xl max-w-sm border border-[#f5edde]">
-                  <h3 className="font-headline text-2xl text-[#1e1b13] mb-4">Shubh Heaven Resort</h3>
-                  <div className="space-y-3 font-body text-sm text-[#5b403d]">
-                    <div className="flex gap-4 items-start">
-                      <span className="material-symbols-outlined text-[#af101a] shrink-0 mt-0.5">map</span>
-                      <p>NH-44 Highway, Lalitpur, Uttar Pradesh 284403, India</p>
+                <div className="hidden lg:flex items-center gap-6 mt-16 pl-2">
+                  <div className="w-16 h-px bg-[#E8DCC4]"></div>
+                  <span className="font-plus-jakarta text-[10px] uppercase tracking-[0.3em] text-[#8A252C] font-bold">The Union</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right: The Velvet Card (Form) */}
+            <div className="w-full lg:w-6/12 relative">
+              <div className="bg-[#8A252C] rounded-[2rem] p-10 md:p-14 shadow-[0_30px_60px_rgba(44,30,22,0.15)]  border border-[#8A252C] relative overflow-hidden">
+                
+                {/* Subtle border inset for luxury card feel */}
+                <div className="absolute inset-4 border border-[#FCFAF8]/10 rounded-2xl pointer-events-none"></div>
+
+                <div className="relative z-10">
+                  <h2 className="font-noto-serif text-3xl md:text-4xl text-[#FCFAF8] mb-10 text-center tracking-tight">Répondez s'il vous plaît</h2>
+
+                  {submitSuccess ? (
+                    <div className="p-10 text-center flex flex-col items-center justify-center min-h-[400px]">
+                      <span className="material-symbols-outlined text-6xl text-[#E8DCC4] mb-6" style={{ fontVariationSettings: "'wght' 200" }}>check_circle</span>
+                      <h3 className="font-noto-serif text-4xl text-[#FCFAF8] mb-6">Thank You.</h3>
+                      <p className="font-plus-jakarta text-[#FCFAF8]/80 leading-[1.8] font-light max-w-sm">
+                        Your response has been sealed. We look forward to celebrating this joyous occasion with you. We will contact you soon regarding your stay.
+                      </p>
                     </div>
-                    <div className="flex gap-4 items-center">
-                      <span className="material-symbols-outlined text-[#8f4e00] shrink-0">event</span>
-                      <p>June 23 - June 24, 2026</p>
-                    </div>
-                  </div>
-                  <a href="/travel" className="mt-6 w-full block text-center bg-[#f5edde] hover:bg-[#e9e2d3] text-[#8f4e00] py-3 rounded-xl font-bold tracking-wider text-xs uppercase transition-colors">
-                    View Travel Info
-                  </a>
+                  ) : (
+                    <form className="space-y-10" onSubmit={handleSubmit}>
+                      
+                      {/* Name */}
+                      <div className="relative group">
+                        <label className="block text-[10px] font-plus-jakarta text-[#E8DCC4] uppercase tracking-[0.3em] mb-3 font-semibold">Guest Name(s)</label>
+                        <input 
+                          name="name"
+                          required
+                          className="w-full bg-transparent border-0 border-b border-[#FCFAF8]/20 py-3 focus:ring-0 focus:border-[#E8DCC4] transition-colors font-noto-serif italic text-2xl text-[#FCFAF8] placeholder-[#FCFAF8]/20 focus:outline-none" 
+                          placeholder="Your Name" 
+                          type="text" 
+                        />
+                      </div>
+                      
+                      {/* Contact */}
+                      <div className="relative group">
+                        <label className="block text-[10px] font-plus-jakarta text-[#E8DCC4] uppercase tracking-[0.3em] mb-3 font-semibold">Contact Email or Phone</label>
+                        <input 
+                          name="contact"
+                          required
+                          className="w-full bg-transparent border-0 border-b border-[#FCFAF8]/20 py-3 focus:ring-0 focus:border-[#E8DCC4] transition-colors font-noto-serif text-xl text-[#FCFAF8] placeholder-[#FCFAF8]/20 focus:outline-none" 
+                          placeholder="For updates" 
+                          type="text" 
+                        />
+                      </div>
+                      
+                      {/* Two Column details */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
+                        <div className="relative group">
+                          <label className="block text-[10px] font-plus-jakarta text-[#E8DCC4] uppercase tracking-[0.3em] mb-3 font-semibold">Number of Guests</label>
+                          <select 
+                            name="guests"
+                            className="w-full bg-transparent border-0 border-b border-[#FCFAF8]/20 py-3 focus:ring-0 focus:border-[#E8DCC4] transition-colors font-noto-serif text-xl text-[#FCFAF8] appearance-none cursor-pointer focus:outline-none"
+                            style={{ color: '#FCFAF8' }}
+                          >
+                            <option value="1" className="text-[#2C1E16]">1 attending</option>
+                            <option value="2" className="text-[#2C1E16]">2 attending</option>
+                            <option value="3" className="text-[#2C1E16]">3 attending</option>
+                            <option value="4+" className="text-[#2C1E16]">Family (4+)</option>
+                          </select>
+                          <span className="material-symbols-outlined absolute right-0 top-10 text-[#E8DCC4] pointer-events-none" style={{ fontVariationSettings: "'wght' 200" }}>expand_more</span>
+                        </div>
+                        
+                        <div className="relative group">
+                          <label className="block text-[10px] font-plus-jakarta text-[#E8DCC4] uppercase tracking-[0.3em] mb-3 font-semibold">Your Response</label>
+                          <select 
+                            name="attending"
+                            className="w-full bg-transparent border-0 border-b border-[#FCFAF8]/20 py-3 focus:ring-0 focus:border-[#E8DCC4] transition-colors font-noto-serif text-xl text-[#FCFAF8] appearance-none cursor-pointer focus:outline-none"
+                            style={{ color: '#FCFAF8' }}
+                          >
+                            <option value="Joyfully Accepts" className="text-[#2C1E16]">Joyfully Accepts</option>
+                            <option value="Regretfully Declines" className="text-[#2C1E16]">Regretfully Declines</option>
+                          </select>
+                          <span className="material-symbols-outlined absolute right-0 top-10 text-[#E8DCC4] pointer-events-none" style={{ fontVariationSettings: "'wght' 200" }}>expand_more</span>
+                        </div>
+                      </div>
+                      
+                      {/* Note */}
+                      <div className="relative group">
+                        <label className="block text-[10px] font-plus-jakarta text-[#E8DCC4] uppercase tracking-[0.3em] mb-3 font-semibold">Dietary Notes / Message</label>
+                        <textarea 
+                          name="message"
+                          className="w-full bg-transparent border-0 border-b border-[#FCFAF8]/20 py-3 focus:ring-0 focus:border-[#E8DCC4] transition-colors font-noto-serif text-xl text-[#FCFAF8] placeholder-[#FCFAF8]/20 resize-none h-20 focus:outline-none" 
+                          placeholder="Optional notes for the hosts..."
+                        ></textarea>
+                      </div>
+                      
+                      {/* Submit */}
+                      <button 
+                        disabled={isSubmitting}
+                        className="w-full mt-8 bg-[#FCFAF8] text-[#8A252C] hover:bg-[#F5EFE6] active:scale-[0.98] py-5 rounded-full font-plus-jakarta text-[11px] font-bold tracking-[0.3em] uppercase transition-all flex justify-center items-center gap-3 cursor-pointer disabled:opacity-50" 
+                        type="submit"
+                      >
+                        {isSubmitting ? "Sealing Envelope..." : "Send RSVP"}
+                        {!isSubmitting && <span className="material-symbols-outlined text-sm" style={{ fontVariationSettings: "'wght' 300" }}>send</span>}
+                      </button>
+                    </form>
+                  )}
                 </div>
               </div>
             </div>
@@ -171,25 +174,32 @@ export default function RSVPPage() {
         </section>
 
         {/* Small Details Grid */}
-        <section className="max-w-screen-xl mx-auto px-6 mt-20">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="bg-[#f5edde] p-8 rounded-3xl text-center">
-                     <span className="material-symbols-outlined text-4xl text-[#af101a] mb-4 font-light">local_hotel</span>
-                     <h4 className="font-headline text-xl mb-2 text-[#1e1b13]">Accommodations</h4>
-                     <p className="text-sm text-[#5b403d] leading-relaxed">Arrangements for guests traveling from out of town have been made at the venue.</p>
-                </div>
-                <div className="bg-[#f5edde] p-8 rounded-3xl text-center">
-                     <span className="material-symbols-outlined text-4xl text-[#af101a] mb-4 font-light">local_parking</span>
-                     <h4 className="font-headline text-xl mb-2 text-[#1e1b13]">Parking</h4>
-                     <p className="text-sm text-[#5b403d] leading-relaxed">Ample secure parking with valet assistance is available at Shubh Heaven Resort.</p>
-                </div>
-                 <div className="bg-[#f5edde] p-8 rounded-3xl text-center border border-[#e9e2d3]">
-                     <span className="material-symbols-outlined text-4xl text-[#af101a] mb-4 font-light">celebration</span>
-                     <h4 className="font-headline text-xl mb-2 text-[#1e1b13]">Festivities</h4>
-                     <p className="text-sm text-[#5b403d] leading-relaxed">Expect vibrant music, dancing, and late-night celebrations. Dress comfortably!</p>
-                </div>
+        <section className="max-w-screen-xl mx-auto px-6 mt-24 mb-10 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-[#E8DCC4] pt-16">
+            <div className="p-4 text-center">
+                  <span className="material-symbols-outlined text-3xl text-[#8F4E00] mb-6" style={{ fontVariationSettings: "'wght' 100" }}>local_hotel</span>
+                  <h4 className="font-noto-serif text-2xl mb-3 text-[#2C1E16]">Accommodations</h4>
+                  <p className="text-sm font-plus-jakarta text-[#2C1E16]/70 leading-[1.8] font-light max-w-sm mx-auto">
+                    Arrangements for out-of-town guests have been secured across multiple comfortable venues. We will contact you personally with your specific stay details upon receiving your RSVP.
+                  </p>
             </div>
+            <div className="p-4 text-center">
+                  <span className="material-symbols-outlined text-3xl text-[#8F4E00] mb-6" style={{ fontVariationSettings: "'wght' 100" }}>local_parking</span>
+                  <h4 className="font-noto-serif text-2xl mb-3 text-[#2C1E16]">Parking</h4>
+                  <p className="text-sm font-plus-jakarta text-[#2C1E16]/70 leading-[1.8] font-light max-w-sm mx-auto">
+                    Ample secure parking and valet assistance will be readily available at all the major celebration locations.
+                  </p>
+            </div>
+              <div className="p-4 text-center">
+                  <span className="material-symbols-outlined text-3xl text-[#8F4E00] mb-6" style={{ fontVariationSettings: "'wght' 100" }}>celebration</span>
+                  <h4 className="font-noto-serif text-2xl mb-3 text-[#2C1E16]">Festivities</h4>
+                  <p className="text-sm font-plus-jakarta text-[#2C1E16]/70 leading-[1.8] font-light max-w-sm mx-auto">
+                    Expect a multi-day itinerary filled with vibrant music, dancing, and late-night celebrations. Dress festively and comfortably!
+                  </p>
+            </div>
+          </div>
         </section>
+
       </main>
       <Footer />
     </>
