@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
-import { Outfit, Cormorant_Garamond, Noto_Serif_Devanagari } from "next/font/google";
+import { Noto_Serif, Plus_Jakarta_Sans, Noto_Serif_Devanagari } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
 
-const outfit = Outfit({
+const notoSerif = Noto_Serif({
   subsets: ["latin"],
-  variable: "--font-outfit",
-  weight: ["300", "400", "500", "600"],
+  variable: "--font-noto-serif",
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
 });
 
-const cormorant = Cormorant_Garamond({
+const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-cormorant",
+  variable: "--font-plus-jakarta",
   weight: ["300", "400", "500", "600", "700"],
-  style: ["normal", "italic"],
 });
 
 const devanagari = Noto_Serif_Devanagari({
@@ -21,28 +22,26 @@ const devanagari = Noto_Serif_Devanagari({
   weight: ["400", "500", "600", "700"],
 });
 
-import Navbar from "@/components/Navbar";
-import ThemeProvider from "@/components/ThemeProvider";
-
 export const metadata: Metadata = {
   title: "Prabal & Shreya | शुभ विवाह — 24 June 2026",
-  description: "You are warmly invited to celebrate the wedding of Prabal Modi & Shreya Baisakhiya on 24 June 2026 at Shubh Heaven Resort, Lalitpur.",
+  description:
+    "You are warmly invited to celebrate the wedding of Prabal Modi & Shreya Baisakhiya on 24 June 2026 at Shubh Heaven Resort, Lalitpur.",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${outfit.variable} ${cormorant.variable} ${devanagari.variable} antialiased scroll-smooth overflow-x-hidden`}>
-      <body className="min-h-screen flex flex-col font-sans overflow-x-hidden">
-        <ThemeProvider>
-          <Navbar />
-          <main className="flex-grow overflow-x-hidden">
-            {children}
-          </main>
-        </ThemeProvider>
+    <html
+      lang="en"
+      className={`${notoSerif.variable} ${plusJakarta.variable} ${devanagari.variable} antialiased scroll-smooth overflow-x-hidden`}
+    >
+      <head>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+      </head>
+      <body className="min-h-screen bg-background font-body text-on-surface overflow-x-hidden selection:bg-primary-fixed selection:text-on-primary-fixed">
+        <Navbar />
+        <main className="flex-grow overflow-x-hidden">{children}</main>
       </body>
     </html>
   );

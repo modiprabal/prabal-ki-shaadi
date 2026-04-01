@@ -3,107 +3,145 @@
 import { motion } from "framer-motion";
 import { weddingConfig } from "@/config/weddingConfig";
 
+/**
+ * Events Preview — Bento Grid from stitch landing_page/code.html "Schedule Bento Grid"
+ */
 export default function EventsPreview() {
-  const { events } = weddingConfig;
+  const { events, location } = weddingConfig;
+
+  const sangeet = events.find((e) => e.title === "Sangeet Night") || events[2];
+  const wedding = events.find((e) => e.title === "Baarat") || events[3];
+  const reception = events.find((e) => e.title === "Grand Reception") || events[5];
 
   return (
-    <section id="events" className="relative py-28 md:py-36 px-6 md:px-12 overflow-hidden" style={{ background: "var(--theme-bg-alt)" }}>
-      {/* Section label */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8 }}
-        className="text-center mb-20"
-      >
-        <p className="text-[9px] font-sans uppercase tracking-[0.5em] mb-4" style={{ color: "var(--theme-text-muted)" }}>
-          The Celebrations
-        </p>
-        <h2
-          className="font-display font-light"
-          style={{ fontSize: "clamp(2rem, 5vw, 4rem)", color: "var(--theme-text)" }}
+    <section className="py-32 px-6 bg-surface" id="events">
+      <div className="max-w-screen-xl mx-auto">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-20"
         >
-          Two Days of Celebration
-        </h2>
-        <div
-          className="w-24 md:w-120 max-w-[80vw] h-[1px] mx-auto mt-6"
-          style={{ background: `linear-gradient(to right, transparent, var(--theme-accent), transparent)` }}
-        />
-      </motion.div>
+          <span className="text-primary font-headline italic text-2xl block mb-2">The Celebrations</span>
+          <h3 className="text-5xl font-headline tracking-tight">Events Schedule</h3>
+        </motion.div>
 
-      {/* Events list — clean horizontal strips */}
-      <div className="max-w-4xl mx-auto">
-        {events.map((event, idx) => (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Event 1 — Sangeet (wide) */}
           <motion.div
-            key={idx}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.6, delay: idx * 0.08 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="md:col-span-2 bg-surface-container-lowest p-10 rounded-xl editorial-shadow group hover:bg-surface-container transition-colors duration-500"
           >
-            {/* Divider line */}
-            {idx === 0 && (
-              <div className="h-[1px] mb-0" style={{ background: "var(--theme-divider)" }} />
-            )}
-
-            <div className="group flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-0 py-8 md:py-10 cursor-default">
-              {/* Number */}
-              <div className="sm:w-16 flex-shrink-0">
-                <span
-                  className="font-display font-light text-2xl md:text-3xl"
-                  style={{ color: "var(--theme-event-number)" }}
-                >
-                  {String(idx + 1).padStart(2, "0")}
-                </span>
+            <div className="flex flex-col md:flex-row justify-between md:items-end gap-6 h-full">
+              <div>
+                <span className="text-secondary font-label text-sm uppercase tracking-widest">Day One</span>
+                <h4 className="text-4xl font-headline mt-2 mb-4">{sangeet.title}</h4>
+                <p className="text-on-surface-variant max-w-sm">{sangeet.description}</p>
               </div>
-
-              {/* Title */}
-              <div className="sm:flex-1">
-                <h3
-                  className="font-display font-light text-xl md:text-2xl tracking-wide group-hover:text-gold transition-colors duration-500"
-                  style={{ color: "var(--theme-text)" }}
-                >
-                  {event.title}
-                </h3>
-                <p className="text-xs md:text-sm mt-1.5 font-sans leading-relaxed max-w-md" style={{ color: "var(--theme-text-muted)" }}>
-                  {event.description}
-                </p>
-              </div>
-
-              {/* Date + Time — right aligned */}
-              <div className="sm:text-right flex-shrink-0 sm:ml-8">
-                <p className="text-xs font-sans uppercase tracking-[0.15em]" style={{ color: "var(--theme-event-date)" }}>
-                  {event.date}
-                </p>
-                <p className="text-[10px] font-sans uppercase tracking-[0.2em] mt-1" style={{ color: "var(--theme-event-time)" }}>
-                  {event.time}
-                </p>
+              <div className="text-right">
+                <span className="block text-primary font-headline text-2xl">{sangeet.date}</span>
+                <span className="text-on-surface-variant">{sangeet.time}</span>
               </div>
             </div>
-
-            {/* Divider line */}
-            <div className="h-[1px]" style={{ background: "var(--theme-divider)" }} />
           </motion.div>
-        ))}
+
+          {/* Event 2 — Wedding Ceremony (crimson bg) */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="bg-primary text-on-primary p-10 rounded-xl editorial-shadow relative overflow-hidden"
+          >
+            <div className="relative z-10 flex flex-col h-full justify-between">
+              <div>
+                <span className="text-primary-fixed font-label text-sm uppercase tracking-widest">The Big Day</span>
+                <h4 className="text-4xl font-headline mt-2 mb-4">Wedding Ceremony</h4>
+              </div>
+              <div className="mt-8">
+                <span className="block font-headline text-2xl">{wedding.date}</span>
+                <span className="opacity-80">{wedding.time}</span>
+                <p className="mt-4 text-sm font-label opacity-90">{location.weddingVenue}</p>
+              </div>
+            </div>
+            {/* Decorative icon */}
+            <div className="absolute top-0 right-0 p-4 opacity-20">
+              <svg className="w-24 h-24" viewBox="0 0 48 48" fill="currentColor" style={{ fontVariationSettings: "'wght' 200" }}>
+                <path d="M24 4C20 4 16 8 16 12c0 2 1 4 2 5.5C14 19 12 22 12 25c0 5 4 9 8 10v9h8v-9c4-1 8-5 8-10 0-3-2-6-6-7.5 1-1.5 2-3.5 2-5.5 0-4-4-8-8-8z"/>
+              </svg>
+            </div>
+          </motion.div>
+
+          {/* Event 3 — Reception */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="bg-surface-container-high p-10 rounded-xl editorial-shadow"
+          >
+            <div className="flex flex-col justify-between h-full">
+              <div>
+                <span className="text-secondary font-label text-sm uppercase tracking-widest">The Grand Finale</span>
+                <h4 className="text-3xl font-headline mt-2 mb-4">{reception.title}</h4>
+              </div>
+              <div className="mt-6">
+                <span className="block text-primary font-headline text-xl">{reception.date}</span>
+                <span className="text-on-surface-variant">{reception.time}</span>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Location Map (wide) */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="md:col-span-2 relative rounded-xl overflow-hidden editorial-shadow group h-64 md:h-auto"
+            id="travel"
+          >
+            <div className="absolute inset-0 bg-on-surface/20 group-hover:bg-on-surface/10 transition-colors z-10" />
+            <iframe
+              src={location.mapEmbedUrl}
+              width="100%"
+              height="100%"
+              style={{ border: 0, minHeight: 256 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Venue Map"
+            />
+            <div className="absolute bottom-6 left-6 z-20 text-white">
+              <div className="flex items-center gap-2 mb-2">
+                <svg className="w-5 h-5 text-primary-fixed" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+                <span className="font-headline text-xl">{location.city}</span>
+              </div>
+              <p className="text-sm opacity-90 max-w-xs font-label">
+                The city of temples and rich Bundelkhandi heritage welcomes you.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* View all link */}
+        <div className="text-center mt-12">
+          <a
+            href="/events"
+            className="inline-flex items-center gap-2 text-primary font-label font-bold tracking-wider group"
+          >
+            VIEW ALL EVENTS
+            <span className="group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+        </div>
       </div>
-
-      {/* Subtle link to /events */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className="text-center mt-12"
-      >
-        <a
-          href="/events"
-          className="text-[9px] font-sans uppercase tracking-[0.3em] transition-colors duration-300 hover:text-gold"
-          style={{ color: "var(--theme-text-dim)" }}
-        >
-          View All Events →
-        </a>
-      </motion.div>
-
     </section>
   );
 }

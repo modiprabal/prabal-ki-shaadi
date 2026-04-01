@@ -1,121 +1,63 @@
 /**
- * Theme Token Configuration
- * ─────────────────────────
- * All semantic color tokens for dark & light modes.
- * These map directly to CSS custom properties (--theme-*).
+ * Saffron Silk – Flat Color Token Configuration
+ * ──────────────────────────────────────────────
+ * Single-mode editorial wedding palette.
+ * No dark/light toggling — warm cream base throughout.
  */
 
-export const themes = {
-  dark: {
-    // Backgrounds
-    bg:          "#0a0a0c",
-    bgAlt:       "#08080a",
-    bgAlt2:      "#06060a",
-    bgAlt3:      "#050507",
-    bgCard:      "#111113",
-    bgSidebar:   "#0d0d10",
+export const colors = {
+  // Surfaces (layered from lightest to deepest)
+  background: "#fff8ef",
+  surface: "#fff8ef",
+  surfaceBright: "#fff8ef",
+  surfaceDim: "#e1d9cb",
+  surfaceContainerLowest: "#ffffff",
+  surfaceContainerLow: "#fbf3e4",
+  surfaceContainer: "#f5edde",
+  surfaceContainerHigh: "#efe7d9",
+  surfaceContainerHighest: "#e9e2d3",
 
-    // Text
-    text:        "#f5f0e8",
-    textMuted:   "#555",
-    textDim:     "#333",
-    textBody:    "#666",
-    textBody2:   "#909090",
+  // Primary (Saffron Red)
+  primary: "#af101a",
+  primaryContainer: "#d32f2f",
+  onPrimary: "#ffffff",
+  primaryFixed: "#ffdad6",
+  primaryFixedDim: "#ffb3ac",
+  onPrimaryFixed: "#410003",
 
-    // Accent (gold)
-    accent:          "#b8965a",
-    accentBright:    "rgba(184,150,90,0.85)",
-    accentMid:       "rgba(184,150,90,0.7)",
-    accentMuted:     "rgba(184,150,90,0.55)",
-    accentSubtle:    "rgba(184,150,90,0.4)",
-    accentFaint:     "rgba(184,150,90,0.3)",
-    accentDeadline:  "rgba(184,150,90,0.8)",
-    accentNav:       "rgba(245,240,232,0.35)",
+  // Secondary (Amber Gold)
+  secondary: "#8f4e00",
+  secondaryContainer: "#ff8f00",
+  onSecondary: "#ffffff",
+  secondaryFixed: "#ffdcc2",
+  secondaryFixedDim: "#ffb77a",
+  onSecondaryFixed: "#2e1500",
 
-    // Borders & dividers
-    divider:     "rgba(245,240,232,0.06)",
-    dividerGold: "#b8965a",
+  // Tertiary (Marigold)
+  tertiary: "#705312",
+  tertiaryContainer: "#8b6b2a",
+  onTertiary: "#ffffff",
+  tertiaryFixed: "#ffdea5",
+  tertiaryFixedDim: "#e9c176",
 
-    // Event numbers
-    eventNumber:   "rgba(184,150,90,0.6)",
-    eventDate:     "rgba(245,240,232,0.6)",
-    eventTime:     "rgba(184,150,90,0.65)",
+  // Text
+  onSurface: "#1e1b13",
+  onSurfaceVariant: "#5b403d",
+  onBackground: "#1e1b13",
 
-    // Glow
-    glowBg: "rgba(184,150,90,0.03)",
+  // Borders & outlines
+  outline: "#8f6f6c",
+  outlineVariant: "#e4beba",
 
-    // Map filter
-    mapFilter: "invert(0.92) hue-rotate(180deg) saturate(0.3) brightness(0.6)",
+  // Inverse
+  inverseSurface: "#343026",
+  inverseOnSurface: "#f8f0e1",
+  inversePrimary: "#ffb3ac",
 
-    // Photo edge fades
-    fadeColor: "#0a0a0c",
+  // Error
+  error: "#ba1a1a",
+  errorContainer: "#ffdad6",
+  onError: "#ffffff",
+} as const;
 
-    // Button
-    btnText: "#0a0a0c",
-
-    // Selection
-    selectionBg: "rgba(184,150,90,0.25)",
-    selectionText: "#f5f0e8",
-
-    // Noise overlay
-    noiseOpacity: "0.025",
-  },
-
-  light: {
-    // Backgrounds
-    bg:          "#FAF6F0",
-    bgAlt:       "#F5EDE3",
-    bgAlt2:      "#F0E8DE",
-    bgAlt3:      "#EBE3D9",
-    bgCard:      "#FFFFFF",
-    bgSidebar:   "#F0E8DE",
-
-    // Text
-    text:        "#2a2520",
-    textMuted:   "#8a8580",
-    textDim:     "#bbb5ad",
-    textBody:    "#6b6560",
-    textBody2:   "#7a7570",
-
-    // Accent (darker gold for contrast on light)
-    accent:          "#8a6d3b",
-    accentBright:    "rgba(138,109,59,0.9)",
-    accentMid:       "rgba(138,109,59,0.75)",
-    accentMuted:     "rgba(138,109,59,0.55)",
-    accentSubtle:    "rgba(138,109,59,0.35)",
-    accentFaint:     "rgba(138,109,59,0.25)",
-    accentDeadline:  "rgba(138,109,59,0.85)",
-    accentNav:       "rgba(42,37,32,0.4)",
-
-    // Borders & dividers
-    divider:     "rgba(42,37,32,0.08)",
-    dividerGold: "#8a6d3b",
-
-    // Event numbers
-    eventNumber:   "rgba(138,109,59,0.6)",
-    eventDate:     "rgba(42,37,32,0.65)",
-    eventTime:     "rgba(138,109,59,0.7)",
-
-    // Glow
-    glowBg: "rgba(138,109,59,0.04)",
-
-    // Map filter (no invert for light)
-    mapFilter: "saturate(0.8) brightness(0.95)",
-
-    // Photo edge fades
-    fadeColor: "#FAF6F0",
-
-    // Button
-    btnText: "#FAF6F0",
-
-    // Selection
-    selectionBg: "rgba(138,109,59,0.2)",
-    selectionText: "#2a2520",
-
-    // Noise overlay
-    noiseOpacity: "0",
-  },
-} satisfies Record<string, Record<string, string>>;
-
-export type ThemeMode = keyof typeof themes;
-export type ThemeTokens = Record<string, string>;
+export type ColorToken = keyof typeof colors;

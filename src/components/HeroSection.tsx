@@ -5,7 +5,6 @@ import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { weddingConfig } from "@/config/weddingConfig";
 
-/* ━━━ Countdown ━━━ */
 function Countdown({ targetDate }: { targetDate: string }) {
   const [t, setT] = useState({ d: 0, h: 0, m: 0, s: 0 });
   const [ready, setReady] = useState(false);
@@ -34,19 +33,19 @@ function Countdown({ targetDate }: { targetDate: string }) {
   ];
 
   return (
-    <div className="flex items-center gap-0.5">
+    <div className="flex items-center gap-4 md:gap-8">
       {pairs.map(([label, val], i) => (
-        <div key={label} className="flex items-center">
-          <div className="flex flex-col items-center w-12 md:w-14">
-            <span className="font-display font-light text-xl md:text-2xl tabular-nums leading-none" style={{ color: "var(--theme-text)" }}>
+        <div key={label} className="flex items-center gap-4 md:gap-8">
+          <div className="flex flex-col items-center">
+            <span className="font-headline text-2xl md:text-3xl tabular-nums leading-none text-on-surface">
               {val.toString().padStart(2, "0")}
             </span>
-            <span className="text-[6px] md:text-[7px] uppercase tracking-[0.25em] mt-1 font-sans" style={{ color: "var(--theme-text-dim)" }}>
+            <span className="text-[8px] uppercase tracking-[0.25em] mt-2 font-label text-tertiary">
               {label}
             </span>
           </div>
           {i < 3 && (
-            <span className="text-sm font-light -mt-2.5" style={{ color: "var(--theme-accent-muted)" }}>:</span>
+            <span className="text-lg font-light -mt-3 text-outline-variant">:</span>
           )}
         </div>
       ))}
@@ -54,249 +53,160 @@ function Countdown({ targetDate }: { targetDate: string }) {
   );
 }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   HERO — Split layout
-   Desktop: Photo left (45%) | Text right (55%)
-   Mobile:  Names → Photo → Details (stacked, centered)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 export default function HeroSection() {
   const { groom, bride, dates, location } = weddingConfig;
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end start"] });
-  const photoScale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
-  const textY = useTransform(scrollYProgress, [0, 1], [0, -30]);
+  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
 
   return (
-    <section
-      ref={sectionRef}
-      id="home"
-      className="noise-overlay relative w-full h-screen overflow-hidden"
-      style={{ background: "var(--theme-bg)" }}
-    >
-      {/* Thin arch — barely visible */}
-      <svg
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[60%] max-w-[450px] h-auto pointer-events-none z-0"
-        viewBox="0 0 700 900" fill="none" style={{ opacity: 0.02 }}
+    <>
+      {/* ═══ Hero Section — from stitch landing_page/code.html ═══ */}
+      <section
+        ref={sectionRef}
+        id="hero"
+        className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden"
       >
-        <path d="M100,900 L100,350 Q100,80 350,60 Q600,80 600,350 L600,900" stroke="var(--theme-accent)" strokeWidth="1" />
-      </svg>
-
-      {/* ━━━ Desktop: side-by-side ━━━ */}
-      <div className="relative z-10 h-full flex flex-col lg:flex-row items-center">
-
-        {/* ── LEFT: Photo (hidden on mobile, shown on lg+) ── */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.5, delay: 0.8 }}
-          className="hidden lg:block relative w-[48%] h-full flex-shrink-0 overflow-hidden"
-        >
-          <motion.div style={{ scale: photoScale }} className="absolute inset-0 will-change-transform">
-            <Image
-              src="/couple-hero.jpg"
-              alt={`${groom.firstName} & ${bride.firstName}`}
-              fill
-              priority
-              sizes="48vw"
-              className="object-cover object-center dark-hero-img"
-            />
+        {/* Background image */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/20 to-background z-10" />
+          <motion.div style={{ scale: bgScale }} className="absolute inset-0 will-change-transform">
             <Image
               src="/couple-hero-light.jpeg"
               alt={`${groom.firstName} & ${bride.firstName}`}
               fill
               priority
-              sizes="48vw"
-              className="object-cover object-center light-hero-img"
+              sizes="100vw"
+              className="object-cover opacity-60"
             />
           </motion.div>
-          {/* Right edge fade — gentle blend into text area */}
-          <div
-            className="absolute top-0 right-0 w-[30%] h-full pointer-events-none"
-            style={{ background: `linear-gradient(to left, var(--theme-fade-color), transparent)` }}
-          />
-          {/* Bottom fade */}
-          <div
-            className="absolute bottom-0 left-0 right-0 h-[15%] pointer-events-none"
-            style={{ background: `linear-gradient(to top, var(--theme-fade-color), transparent)` }}
-          />
-          {/* Top fade */}
-          <div
-            className="absolute top-0 left-0 right-0 h-[10%] pointer-events-none"
-            style={{ background: `linear-gradient(to bottom, var(--theme-fade-color), transparent)` }}
-          />
-        </motion.div>
+        </div>
 
-        {/* ── RIGHT: Text content (centered on mobile, right-aligned on desktop) ── */}
-        <motion.div
-          style={{ y: textY }}
-          className="flex-1 flex flex-col items-center justify-center h-full px-6 md:px-8 will-change-transform"
-        >
-          {/* ॐ — decorative with flanking lines */}
+        {/* Content */}
+        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+          {/* Save The Date pill */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.1 }}
-            className="flex items-center gap-4 mb-3"
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="inline-block mb-6 py-1 px-4 rounded-full border border-outline-variant/15 text-secondary text-sm tracking-widest font-label uppercase"
           >
-            <div className="w-10 lg:w-16 h-[1px]" style={{ background: `linear-gradient(to right, transparent, var(--theme-accent-subtle))` }} />
-            <span
-              className="font-hindi text-2xl md:text-3xl"
-              style={{ color: "var(--theme-accent-bright)" }}
-            >
-              ॐ
-            </span>
-            <div className="w-10 lg:w-16 h-[1px]" style={{ background: `linear-gradient(to left, transparent, var(--theme-accent-subtle))` }} />
+            Save The Date
           </motion.div>
-
-          {/* शुभ विवाह */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.5, delay: 0.3 }}
-            className="font-hindi text-sm md:text-base tracking-[0.35em] mb-6 text-center uppercase"
-            style={{ color: "var(--theme-accent-muted)" }}
-          >
-            शुभ विवाह
-          </motion.p>
 
           {/* Names */}
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="font-display font-light leading-[0.85] tracking-[0.02em] select-none"
-            style={{
-              fontSize: "clamp(3.5rem, 9vw, 7rem)",
-              color: "var(--theme-text)",
-            }}
+            transition={{ duration: 1.2, delay: 0.4 }}
+            className="font-headline text-6xl md:text-8xl lg:text-9xl text-on-surface tracking-tighter mb-8 leading-none"
           >
-            {groom.firstName}
+            {groom.firstName} <span className="italic text-primary">&amp;</span> {bride.firstName}
           </motion.h1>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 1, type: "spring", stiffness: 80 }}
-            className="flex items-center gap-3 my-1"
+          {/* Tagline */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="font-body text-xl md:text-2xl text-secondary mb-12 max-w-lg mx-auto leading-relaxed"
           >
-            <div className="w-8 lg:w-12 h-[1px]" style={{ background: `linear-gradient(to right, transparent, var(--theme-accent-muted))` }} />
-            <span className="font-display italic text-l lg:text-xl" style={{ color: "var(--theme-accent)" }}>WEDS</span>
-            <div className="w-8 lg:w-12 h-[1px]" style={{ background: `linear-gradient(to left, transparent, var(--theme-accent-muted))` }} />
-          </motion.div>
+            Join us as we begin our forever.
+          </motion.p>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="font-display font-light leading-[0.85] tracking-[0.02em] select-none"
-            style={{
-              fontSize: "clamp(3.5rem, 9vw, 7rem)",
-              color: "var(--theme-text)",
-            }}
-          >
-            {bride.firstName}
-          </motion.h1>
-
-          {/* ── Mobile-only photo (between names and details) ── */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 1.0 }}
-            className="lg:hidden relative w-full max-w-[380px] h-[28vh] min-h-[180px] my-4 rounded-lg overflow-hidden self-center"
-          >
-            <Image
-              src="/couple-hero.jpg"
-              alt={`${groom.firstName} & ${bride.firstName}`}
-              fill
-              priority
-              sizes="90vw"
-              className="object-cover object-center dark-hero-img"
-            />
-            <Image
-              src="/couple-hero-light.jpeg"
-              alt={`${groom.firstName} & ${bride.firstName}`}
-              fill
-              priority
-              sizes="90vw"
-              className="object-cover object-center light-hero-img"
-            />
-            {/* Soft edges */}
-            <div className="absolute inset-0 pointer-events-none" style={{
-              boxShadow: `inset 0 0 40px 20px var(--theme-fade-color)`,
-            }} />
-          </motion.div>
-
-          {/* Gold line */}
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 1.2, delay: 1.2, ease: "easeInOut" }}
-            className="w-60 lg:w-60 max-w-[80vw] h-[1px] mt-6 lg:mt-8 mb-5"
-            style={{ background: `linear-gradient(to right, transparent, var(--theme-accent), transparent)` }}
-          />
-
-          {/* Date + Venue */}
+          {/* When / Where */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1.4 }}
-            className="flex flex-col items-center"
+            transition={{ duration: 0.8, delay: 1.0 }}
+            className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 mb-10"
           >
-            <p className="font-display font-light tracking-[0.25em] text-base md:text-lg uppercase" style={{ color: "var(--theme-text)" }}>
-              {dates.mainWeddingDate}
-            </p>
-            <p className="text-[9px] md:text-[10px] font-sans uppercase tracking-[0.3em] mt-2 mb-6" style={{ color: "var(--theme-accent-deadline)" }}>
-              {location.weddingVenue} &nbsp;·&nbsp; {location.city}
-            </p>
+            <div className="text-center">
+              <span className="block text-sm font-label text-tertiary uppercase tracking-[0.2em] mb-2">When</span>
+              <span className="block font-headline text-2xl text-on-surface">{dates.mainWeddingDate}</span>
+            </div>
+            <div className="w-px h-12 bg-outline-variant/30 hidden md:block" />
+            <div className="text-center">
+              <span className="block text-sm font-label text-tertiary uppercase tracking-[0.2em] mb-2">Where</span>
+              <span className="block font-headline text-2xl text-on-surface">{location.city}</span>
+            </div>
           </motion.div>
 
           {/* Countdown */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1.6 }}
-            className="mb-8"
+            transition={{ duration: 0.8, delay: 1.2 }}
+            className="mb-10"
           >
             <Countdown targetDate={dates.mainWeddingDate} />
           </motion.div>
+        </div>
+      </section>
 
-          {/* CTA */}
+      {/* ═══ Invitation Story — from stitch landing_page/code.html ═══ */}
+      <section className="py-32 px-6 md:px-12 bg-surface-container-low">
+        <div className="max-w-screen-2xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+          {/* Left — Photo */}
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 1.8 }}
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.9 }}
+            className="lg:col-span-5 relative"
           >
-            <a
-              href="/rsvp"
-              className="group relative px-10 py-3 rounded-full font-sans text-[10px] font-medium tracking-[0.2em] uppercase overflow-hidden transition-all duration-500"
-              style={{ border: `1px solid var(--theme-accent-subtle)`, color: "var(--theme-accent)" }}
-            >
-              <span className="relative z-10 group-hover:text-[var(--theme-btn-text)] transition-colors duration-500">
-                Celebrate With Us
-              </span>
-              <div
-                className="absolute inset-0 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500"
-                style={{ background: "var(--theme-accent)" }}
+            <div className="relative aspect-[4/5] rounded-xl overflow-hidden editorial-shadow">
+              <Image
+                src="/couple-hero-light.jpeg"
+                alt={`${groom.firstName} & ${bride.firstName}`}
+                fill
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                className="object-cover"
               />
-            </a>
+            </div>
+            <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-surface-container-highest p-4 rounded-xl editorial-shadow hidden md:block">
+              <Image
+                src="/mandala.png"
+                alt="Decorative mandala"
+                width={160}
+                height={160}
+                className="w-full h-full object-cover rounded-lg opacity-80"
+              />
+            </div>
           </motion.div>
-        </motion.div>
-      </div>
 
-      {/* Scroll cue */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 3, duration: 1.5 }}
-        className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10"
-      >
-        <motion.div
-          animate={{ y: [0, 4, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="w-[1px] h-5"
-          style={{ background: `linear-gradient(to bottom, var(--theme-accent-muted), transparent)` }}
-        />
-      </motion.div>
-    </section>
+          {/* Right — Text */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.9, delay: 0.1 }}
+            className="lg:col-span-7 lg:pl-16"
+          >
+            <h2 className="font-headline text-4xl md:text-5xl text-on-surface mb-8 leading-tight">
+              Together with our families, we invite you to celebrate our union.
+            </h2>
+            <div className="space-y-6 text-lg text-on-surface-variant max-w-xl">
+              <p>
+                It began as a quiet conversation and grew into a lifelong promise.
+                We found in each other a companion, a best friend, and a partner for
+                all our future adventures.
+              </p>
+              <p>
+                As we take this sacred step in the historic city of Lalitpur, your
+                presence would add to the joy of our celebrations. We look forward to
+                creating memories that will be cherished for generations.
+              </p>
+            </div>
+            <div className="mt-12 flex items-center gap-4">
+              <div className="h-px w-12 bg-primary" />
+              <span className="font-headline italic text-xl text-primary font-bold">
+                {groom.firstName} &amp; {bride.firstName}
+              </span>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+    </>
   );
 }

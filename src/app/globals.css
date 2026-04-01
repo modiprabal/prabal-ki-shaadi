@@ -1,32 +1,7 @@
 @import "tailwindcss";
+@config "../../tailwind.config.ts";
 
-@theme {
-  /* ─── Refined Palette (Tailwind tokens) ─── */
-  --color-bg: #0a0a0c;
-  --color-bg-elevated: #111113;
-  --color-gold: #b8965a;
-  --color-gold-bright: #d4b87a;
-  --color-gold-muted: #8a7040;
-  --color-cream: #f5f0e8;
-  --color-cream-muted: #c8c0b0;
-  --color-muted: #555;
-
-  /* Brand aliases */
-  --color-brand-peach: #FAF6F0;
-  --color-brand-mint: #E0F4E8;
-  --color-brand-sage: #B4D4C6;
-  --color-brand-emerald: #16462E;
-  --color-brand-gold: #b8965a;
-  --color-brand-gold-muted: #8a7040;
-  --color-text-main: #f5f0e8;
-  --color-text-muted: #888;
-
-  /* Fonts */
-  --font-sans: var(--font-outfit), system-ui, sans-serif;
-  --font-serif: var(--font-cormorant), 'Georgia', serif;
-  --font-display: var(--font-cormorant), 'Georgia', serif;
-  --font-hindi: var(--font-devanagari), serif;
-}
+@custom-variant dark (&:where(.dark, .dark *));
 
 * { box-sizing: border-box; }
 
@@ -36,52 +11,53 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Base Fonts injected via Next.js Layout, but we map them to body/headers to be safe */
 body {
-  background: var(--theme-bg, #0a0a0c);
-  color: var(--theme-text, #f5f0e8);
-  min-height: 100vh;
-  font-family: var(--font-sans);
-  overflow-x: hidden;
-  transition: background-color 0.5s ease, color 0.5s ease;
+  font-family: var(--font-plus-jakarta), 'Plus Jakarta Sans', sans-serif;
 }
 
-/* ─── Noise grain texture overlay ─── */
-.noise-overlay::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: var(--theme-noise-opacity, 0.025);
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 256px;
-  transition: opacity 0.5s ease;
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-noto-serif), 'Noto Serif', serif;
 }
 
-/* ─── Selection ─── */
-::selection {
-  background: var(--theme-selection-bg, rgba(184, 150, 90, 0.25));
-  color: var(--theme-selection-text, #f5f0e8);
+/* Material Symbols Outlined Customization from stitch */
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    vertical-align: middle;
 }
 
-/* ─── Theme transition helpers ─── */
-.theme-transition {
-  transition: background-color 0.5s ease, color 0.5s ease,
-              border-color 0.5s ease, box-shadow 0.5s ease;
+/* Custom utility classes from stitch HTML */
+.editorial-shadow {
+    box-shadow: 0 20px 40px rgba(30, 27, 19, 0.04);
 }
 
-/* ─── Theme-based Hero Image Toggling ─── */
-.light-hero-img {
-  display: none !important;
-}
-.dark-hero-img {
-  display: block !important;
+.henna-pattern {
+    background-image: radial-gradient(#ff8f0015 1px, transparent 1px);
+    background-size: 40px 40px;
 }
 
-[data-theme="light"] .light-hero-img {
-  display: block !important;
+.editorial-asymmetry {
+    padding-left: 3rem;
+    padding-right: 4rem;
 }
-[data-theme="light"] .dark-hero-img {
-  display: none !important;
+
+@media (min-width: 768px) {
+    .editorial-asymmetry {
+        padding-left: 10%;
+        padding-right: 15%;
+    }
 }
+
+.glass-nav {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.hero-gradient {
+    background: linear-gradient(135deg, #fff8ef 0%, #f5edde 100%);
+}
+
+[id] {
+  scroll-margin-top: 5rem;
+}
+
