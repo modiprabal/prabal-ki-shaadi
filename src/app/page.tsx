@@ -230,7 +230,7 @@ function HeroSection() {
             transition={{ duration: 0.8, delay: 1.6 }}
             className="mb-8"
           >
-            <Countdown targetDate={dates.mainWeddingDate} />
+            <Countdown targetDate={dates.checkInDate} />
           </motion.div>
 
           {/* CTA */}

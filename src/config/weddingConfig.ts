@@ -8,7 +8,7 @@ export const weddingConfig = {
     lastName: "Baisakhiya"
   },
   dates: {
-    mainWeddingDate: "24 June 2026",
+    mainWeddingDate: "23 & 24 June 2026",
     rsvpDeadline: "May 15, 2026",
     checkInDate: "23 June 2026",
     checkInTime: "12:00 PM"

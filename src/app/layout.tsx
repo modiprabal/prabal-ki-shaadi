@@ -23,9 +23,9 @@ const devanagari = Noto_Serif_Devanagari({
 });
 
 export const metadata: Metadata = {
-  title: "Prabal & Shreya | शुभ विवाह — 24 June 2026",
+  title: "Prabal & Shreya | शुभ विवाह — 23 & 24 June 2026",
   description:
-    "You are warmly invited to celebrate the wedding of Prabal Modi & Shreya Baisakhiya on 24 June 2026 at Shubh Heaven Resort, Lalitpur.",
+    "You are warmly invited to celebrate the wedding of Prabal Modi & Shreya Baisakhiya on 23 & 24 June 2026 at Shubh Heaven Resort, Lalitpur.",
 };
 
 export default function RootLayout({
