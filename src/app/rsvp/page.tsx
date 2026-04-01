@@ -56,8 +56,8 @@ export default function RSVPPage() {
                 </span>
                 <h1 className="font-noto-serif text-6xl md:text-8xl text-[#2C1E16] leading-[1.05] tracking-[-0.03em] mb-8">
                   Your <br className="hidden md:block"/>
-                  Presence <br className="hidden md:block"/>
-                  <span className="italic text-[#8A252C] font-light">is Requested.</span>
+                  Presence is<br className="hidden md:block"/>
+                  <span className="italic text-[#8A252C] font-light">Requested.</span>
                 </h1>
                 <p className="font-plus-jakarta text-[#2C1E16]/70 leading-[1.8] font-light text-lg max-w-md mx-auto lg:mx-0">
                   We kindly request the honor of your company as we celebrate our union. Please return this RSVP card by <span className="text-[#8F4E00] font-semibold">{dates.rsvpDeadline}</span>.
@@ -78,7 +78,7 @@ export default function RSVPPage() {
                 <div className="absolute inset-4 border border-[#FCFAF8]/10 rounded-2xl pointer-events-none"></div>
 
                 <div className="relative z-10">
-                  <h2 className="font-noto-serif text-3xl md:text-4xl text-[#FCFAF8] mb-10 text-center tracking-tight">Répondez s'il vous plaît</h2>
+                  <h2 className="font-noto-serif text-3xl md:text-4xl text-[#FCFAF8] mb-10 text-center tracking-tight">Please Respond</h2>
 
                   {submitSuccess ? (
                     <div className="p-10 text-center flex flex-col items-center justify-center min-h-[400px]">
