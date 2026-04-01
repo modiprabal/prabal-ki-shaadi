@@ -13,9 +13,9 @@ export default function TravelPage() {
       description:
         "Best overall option for most guests. Direct premium trains connect comfortably into Lalitpur Junction.",
       trains: [
-        "Hazrat Nizamuddin - Khajuraho Vande Bharat Express (22470)",
-        "New Delhi - Rani Kamalapati Shatabdi Express (12002)",
-        "Sachkhand Express (12716)",
+        "Hazrat Nizamuddin - Khajuraho Vande Bharat Express (22470) ~ 5h 35m",
+        "New Delhi - Rani Kamalapati Shatabdi Express (12002) ~ 5h 42m",
+        "Sachkhand Express (12716) ~ 6h 56m",
       ],
     },
     {
@@ -23,9 +23,9 @@ export default function TravelPage() {
       description:
         "A convenient short rail journey if you are arriving via Raja Bhoj Airport or traveling from central Madhya Pradesh.",
       trains: [
-        "Rani Kamalapati - New Delhi Shatabdi Express (12001)",
-        "Sachkhand Express (12715)",
-        "Mumbai LTT - Sitapur Superfast Express (12107)",
+        "Rani Kamalapati - New Delhi Shatabdi Express (12001) ~ 2h 11m",
+        "Sachkhand Express (12715) ~ 2h 31m",
+        "Mumbai LTT - Sitapur Superfast Express (12107) ~ 2h 26m",
       ],
     },
     {
@@ -33,9 +33,9 @@ export default function TravelPage() {
       description:
         "Useful as a regional rail gateway if you prefer breaking the journey before entering Bundelkhand.",
       trains: [
-        "New Delhi - Rani Kamalapati Shatabdi Express (12002)",
-        "Hazrat Nizamuddin - Khajuraho Vande Bharat Express (22470)",
-        "Punjab Mail (12138)",
+        "New Delhi - Rani Kamalapati Shatabdi Express (12002) ~ 2h 14m",
+        "Hazrat Nizamuddin - Khajuraho Vande Bharat Express (22470) ~ 2h 25m",
+        "Punjab Mail (12138) ~ 3h 04m",
       ],
     },
   ];
@@ -68,39 +68,78 @@ export default function TravelPage() {
 
   const attractions = [
     {
-      name: "Deogarh (Dashavatara Temple)",
-      desc: "A stunning 6th-century Gupta-era monument dedicated to Lord Vishnu. Recognized as one of the earliest known Panchayatana temples in North India.",
+      name: "Deogarh Temple Complex",
+      desc: "A single heritage stop that covers both the famous Dashavatara Temple and the historic Jain temple cluster inside Deogarh Fort.",
       distance: "~30 km from Lalitpur",
-    },
-    {
-      name: "Jain Temple Complex",
-      desc: "Situated inside the Deogarh Fort walls, this 8th-century cluster boasts a vast collection of ancient Jain images and intricate wall frescoes.",
-      distance: "~30 km from Lalitpur",
+      mapLinks: [
+        {
+          label: "Dashavatara Temple",
+          url: "https://www.google.com/maps/search/?api=1&query=Dashavatara+Temple+Deogarh+Lalitpur",
+        },
+        {
+          label: "Jain Temple Complex",
+          url: "https://www.google.com/maps/search/?api=1&query=Jain+Temple+Deogarh+Lalitpur",
+        },
+      ],
     },
     {
       name: "Matatila & Rajghat Dams",
       desc: "Beautiful, vast reservoirs built across the Betwa River. These spots offer incredibly scenic and serene views perfect for a tranquil evening.",
       distance: "~40 km from Lalitpur",
+      mapLinks: [
+        {
+          label: "Matatila Dam",
+          url: "https://www.google.com/maps/search/?api=1&query=Matatila+Dam+Lalitpur",
+        },
+        {
+          label: "Rajghat Dam",
+          url: "https://www.google.com/maps/search/?api=1&query=Rajghat+Dam+Lalitpur",
+        },
+      ],
     },
     {
       name: "Talbehat Fort",
       desc: "A historic 17th-century Bundelkhandi fort strategically positioned on the highway, bearing witness to the rich regional history of Uttar Pradesh.",
       distance: "~40 km from Lalitpur",
+      mapLinks: [
+        {
+          label: "Open Map",
+          url: "https://www.google.com/maps/search/?api=1&query=Talbehat+Fort+Lalitpur",
+        },
+      ],
     },
     {
       name: "Chanderi",
       desc: "A charming historic town famous for its hand-woven Chanderi silk sarees, striking forts, and majestic medieval architecture.",
       distance: "~35 km from Lalitpur",
+      mapLinks: [
+        {
+          label: "Open Map",
+          url: "https://www.google.com/maps/search/?api=1&query=Chanderi+Madhya+Pradesh",
+        },
+      ],
     },
     {
       name: "Jakhlaun Pump Canal",
       desc: "Enjoy serene evening strolls by the Betwa river waters at the scenic Jakhlaun Pump Canal and its surrounding park area.",
       distance: "~24 km from Lalitpur",
+      mapLinks: [
+        {
+          label: "Open Map",
+          url: "https://www.google.com/maps/search/?api=1&query=Jakhlaun+Lalitpur",
+        },
+      ],
     },
     {
       name: "Govind Sagar Dam & Parks",
       desc: "For local relaxation within city limits, visit the beautiful Govind Sagar Dam or take a quiet evening walk through the parks in Civil Lines.",
       distance: "Local (Lalitpur)",
+      mapLinks: [
+        {
+          label: "Open Map",
+          url: "https://www.google.com/maps/search/?api=1&query=Govind+Sagar+Dam+Lalitpur",
+        },
+      ],
     },
   ];
 
@@ -226,7 +265,7 @@ export default function TravelPage() {
                       {hub.trains.map((train) => (
                         <li
                           key={train}
-                          className="flex items-start gap-2 text-xs text-[#2C1E16] font-plus-jakarta"
+                          className="flex items-start gap-2 text-sm leading-7 text-[#2C1E16] font-plus-jakarta"
                         >
                           <span
                             className="material-symbols-outlined text-[14px] text-[#8F4E00]"
@@ -303,9 +342,28 @@ export default function TravelPage() {
                     <p className="mb-4 text-sm font-light leading-[1.8] text-[#2C1E16]/80 font-plus-jakarta">
                       {item.desc}
                     </p>
-                    <span className="inline-flex items-center gap-2 rounded-full border border-[#E8DCC4] bg-[#FCFAF8] px-3 py-1.5 font-plus-jakarta text-[10px] font-semibold uppercase tracking-[0.2em] text-[#8F4E00]">
-                      {item.distance}
-                    </span>
+                    <div className="flex flex-wrap items-center gap-3">
+                      <span className="inline-flex items-center gap-2 rounded-full border border-[#E8DCC4] bg-[#FCFAF8] px-3 py-1.5 font-plus-jakarta text-[10px] font-semibold uppercase tracking-[0.2em] text-[#8F4E00]">
+                        {item.distance}
+                      </span>
+                      {item.mapLinks.map((mapLink) => (
+                        <a
+                          key={mapLink.url}
+                          href={mapLink.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 rounded-full border border-[#E8DCC4] bg-transparent px-3 py-1.5 font-plus-jakarta text-[10px] font-semibold uppercase tracking-[0.2em] text-[#8A252C] transition-colors duration-300 hover:bg-[#FCFAF8]"
+                        >
+                          {mapLink.label}
+                          <span
+                            className="material-symbols-outlined text-[14px]"
+                            style={{ fontVariationSettings: "'wght' 200" }}
+                          >
+                            north_east
+                          </span>
+                        </a>
+                      ))}
+                    </div>
                   </div>
                 </div>
               ))}
