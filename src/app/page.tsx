@@ -298,24 +298,28 @@ export default function Home() {
 
         {/* Invitation Story Section */}
         <section className="py-24 px-6 md:px-12 relative z-10">
-          <div className="max-w-4xl mx-auto border border-[#E8DCC4] bg-[#F9F4EC] px-8 py-14 md:px-16 md:py-20 text-center relative overflow-hidden">
+          <div className="max-w-4xl mx-auto border border-[#E8DCC4] bg-[#F9F4EC] px-6 py-12 md:px-16 md:py-24 text-center relative overflow-hidden">
             <div className="absolute top-6 left-6 w-10 h-10 border-l border-t border-[#E8DCC4] opacity-70"></div>
             <div className="absolute top-6 right-6 w-10 h-10 border-r border-t border-[#E8DCC4] opacity-70"></div>
             <div className="absolute bottom-6 left-6 w-10 h-10 border-l border-b border-[#E8DCC4] opacity-70"></div>
             <div className="absolute bottom-6 right-6 w-10 h-10 border-r border-b border-[#E8DCC4] opacity-70"></div>
             <div className="relative">
               <p className="font-plus-jakarta text-xs uppercase tracking-[0.35em] text-[#8F4E00] mb-6">Invitation Note</p>
-              <h2 className="font-noto-serif text-4xl md:text-5xl text-[#8A252C] mb-8 leading-[1.2] tracking-tight">
+              <h2 className="font-noto-serif text-2xl md:text-5xl text-[#8A252C] mb-8 leading-[1.2] tracking-tight">
                 Together with our families, we invite you to celebrate our union.
               </h2>
-              <div className="space-y-6 text-lg text-[#2C1E16]/80 font-plus-jakarta font-light leading-[1.8] max-w-2xl mx-auto">
+              <div className="space-y-6 text-base md:text-lg text-[#2C1E16]/80 font-plus-jakarta font-light leading-[1.8] max-w-2xl mx-auto">
                 <p>It began as a quiet conversation and grew into a lifelong promise. We found in each other a companion, a best friend, and a partner for all our future adventures.</p>
                 <p>As we take this sacred step in the historic city of {location.city.split(",")[0]}, your presence would add to the joy of our celebrations. We look forward to creating memories that will be cherished for generations.</p>
               </div>
-              <div className="mt-16 flex items-center justify-center gap-6">
-                <div className="h-px w-16 bg-[#E8DCC4]"></div>
-                <span className="font-noto-serif italic text-3xl text-[#8F4E00] opacity-90">{groom.firstName} &amp; {bride.firstName}</span>
-                <div className="h-px w-16 bg-[#E8DCC4]"></div>
+              <div className="mt-10 mb-4 flex flex-col items-center justify-center">
+                <span className="font-signature text-4xl md:text-6xl text-[#8F4E00] opacity-95 whitespace-nowrap rotate-[-1deg]">
+                  {groom.firstName}
+                </span>
+                <span className="font-noto-serif text-lg md:text-xl text-[#8A252C] opacity-60 my-1 italic font-light">&amp;</span>
+                <span className="font-signature text-4xl md:text-6xl text-[#8F4E00] opacity-95 whitespace-nowrap rotate-[1deg]">
+                  {bride.firstName}
+                </span>
               </div>
             </div>
           </div>
