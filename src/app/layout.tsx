@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Noto_Serif, Plus_Jakarta_Sans, Noto_Serif_Devanagari, Great_Vibes } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import ThemeProvider from "@/components/ThemeProvider";
 
 const notoSerif = Noto_Serif({
   subsets: ["latin"],
@@ -40,14 +41,17 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${notoSerif.variable} ${plusJakarta.variable} ${devanagari.variable} ${signatureFont.variable} antialiased scroll-smooth overflow-x-hidden`}
     >
       <head>
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
       </head>
       <body className="min-h-screen bg-background font-body text-on-surface overflow-x-hidden selection:bg-primary-fixed selection:text-on-primary-fixed">
-        <Navbar />
-        <main className="flex-grow overflow-x-hidden">{children}</main>
+        <ThemeProvider>
+          <Navbar />
+          <main className="flex-grow overflow-x-hidden">{children}</main>
+        </ThemeProvider>
       </body>
     </html>
   );

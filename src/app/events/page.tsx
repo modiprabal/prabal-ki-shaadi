@@ -20,50 +20,50 @@ export default function EventsTimeline() {
 
   return (
     <>
-      <main className="bg-[#FCFAF8] pb-20 pt-28 md:pt-32 text-[#2C1E16] font-body selection:bg-[#E8DCC4] selection:text-[#8A252C]">
+      <main className="bg-background pb-20 pt-28 md:pt-32 text-foreground font-body selection:bg-border selection:text-accent transition-colors duration-700">
         <header className="px-6 md:px-10">
-          <div className="mx-auto max-w-screen-xl border-b border-[#E8DCC4] pb-16">
-            <p className="font-plus-jakarta text-xs uppercase tracking-[0.4em] text-[#8F4E00]">
+          <div className="mx-auto max-w-screen-xl border-b border-border pb-16">
+            <p className="font-plus-jakarta text-xs uppercase tracking-[0.4em] text-highlight">
               Wedding Itinerary
             </p>
             <div className="mt-5 grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
               <div>
-                <h1 className="max-w-4xl font-noto-serif text-5xl leading-[1.02] tracking-[-0.02em] text-[#8A252C] md:text-7xl lg:text-8xl">
+                <h1 className="max-w-4xl font-noto-serif text-5xl leading-[1.02] tracking-[-0.02em] text-accent md:text-7xl lg:text-8xl">
                   The celebrations.
                 </h1>
-                <p className="mt-7 max-w-2xl text-lg leading-[1.8] text-[#2C1E16]/80 font-plus-jakarta font-light">
+                <p className="mt-7 max-w-2xl text-lg leading-[1.8] text-foreground/80 font-plus-jakarta font-light">
                   Every ceremony is grouped day by day so guests can read the
                   flow quickly, plan their outfits, and know exactly where the
                   wedding weekend moves next.
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-[#E8DCC4] bg-[#F5EFE6] p-8">
-                <p className="text-xs uppercase tracking-[0.32em] text-[#8A252C] font-plus-jakarta">
+              <div className="rounded-2xl border border-border bg-surface p-8 transition-colors duration-700">
+                <p className="text-xs uppercase tracking-[0.32em] text-accent font-plus-jakarta">
                   At A Glance
                 </p>
                 <div className="mt-6 grid gap-5 sm:grid-cols-3 lg:grid-cols-1">
                   <div>
-                    <p className="text-[11px] uppercase tracking-[0.28em] text-[#8F4E00]">
+                    <p className="text-[11px] uppercase tracking-[0.28em] text-highlight">
                       Dates
                     </p>
-                    <p className="mt-2 font-noto-serif text-2xl text-[#2C1E16]">
+                    <p className="mt-2 font-noto-serif text-2xl text-foreground">
                       {dates.checkInDate} onwards
                     </p>
                   </div>
                   <div>
-                    <p className="text-[11px] uppercase tracking-[0.28em] text-[#8F4E00]">
+                    <p className="text-[11px] uppercase tracking-[0.28em] text-highlight">
                       Venue
                     </p>
-                    <p className="mt-2 font-noto-serif text-2xl text-[#2C1E16]">
+                    <p className="mt-2 font-noto-serif text-2xl text-foreground">
                       {location.weddingVenue}
                     </p>
                   </div>
                   <div>
-                    <p className="text-[11px] uppercase tracking-[0.28em] text-[#8F4E00]">
+                    <p className="text-[11px] uppercase tracking-[0.28em] text-highlight">
                       City
                     </p>
-                    <p className="mt-2 font-noto-serif text-2xl text-[#2C1E16]">
+                    <p className="mt-2 font-noto-serif text-2xl text-foreground">
                       {cityName}
                     </p>
                   </div>
@@ -81,13 +81,13 @@ export default function EventsTimeline() {
                 className="grid gap-8 border-t border-[#E8DCC4] pt-10 lg:grid-cols-[0.34fr_0.66fr] lg:gap-12"
               >
                 <div className="lg:sticky lg:top-28 lg:self-start">
-                  <p className="text-xs uppercase tracking-[0.34em] text-[#8A252C] font-plus-jakarta">
+                  <p className="text-xs uppercase tracking-[0.34em] text-accent font-plus-jakarta">
                     Day {dayIndex + 1}
                   </p>
-                  <h2 className="mt-3 font-noto-serif text-4xl tracking-tight text-[#2C1E16] md:text-5xl">
+                  <h2 className="mt-3 font-noto-serif text-4xl tracking-tight text-foreground md:text-5xl">
                     {date}
                   </h2>
-                  <p className="mt-5 max-w-sm text-base leading-7 text-[#2C1E16]/70 font-plus-jakarta font-light">
+                  <p className="mt-5 max-w-sm text-base leading-7 text-foreground/70 font-plus-jakarta font-light">
                     {dayEvents.length} ceremonies at {location.weddingVenue}.
                     Each block below gives you the timing, venue, and mood for
                     the moment.
@@ -98,42 +98,42 @@ export default function EventsTimeline() {
                   {dayEvents.map((event, index) => (
                     <article
                       key={event.title}
-                      className="rounded-2xl border border-[#E8DCC4] bg-transparent p-6 md:p-8 transition-colors duration-500 hover:bg-[#F5EFE6]"
+                      className="rounded-2xl border border-border bg-transparent p-6 md:p-8 transition-colors duration-500 hover:bg-surface/80"
                     >
                       <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
                         <div className="max-w-2xl">
                           <div className="flex items-center gap-4">
-                            <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#E8DCC4] bg-[#FCFAF8] font-plus-jakarta text-xs font-semibold uppercase tracking-[0.14em] text-[#8F4E00]">
+                            <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background font-plus-jakarta text-xs font-semibold uppercase tracking-[0.14em] text-highlight">
                               {String(index + 1).padStart(2, "0")}
                             </span>
-                            <p className="text-xs uppercase tracking-[0.28em] text-[#8A252C] font-plus-jakarta">
+                            <p className="text-xs uppercase tracking-[0.28em] text-accent font-plus-jakarta">
                               Ceremony
                             </p>
                           </div>
-                          <h3 className="mt-4 font-noto-serif text-3xl leading-tight text-[#2C1E16] md:text-4xl">
+                          <h3 className="mt-4 font-noto-serif text-3xl leading-tight text-foreground md:text-4xl">
                             {event.title}
                           </h3>
-                          <p className="mt-4 text-base leading-7 text-[#2C1E16]/80 font-plus-jakarta font-light">
+                          <p className="mt-4 text-base leading-7 text-foreground/80 font-plus-jakarta font-light">
                             {event.description}
                           </p>
                         </div>
 
-                        <div className="min-w-[12rem] rounded-xl border border-[#E8DCC4] bg-[#FCFAF8] px-5 py-4 md:text-right md:border-none md:bg-transparent md:px-0">
-                          <p className="text-[11px] uppercase tracking-[0.28em] text-[#8F4E00] font-plus-jakarta">
+                        <div className="min-w-[12rem] rounded-xl border border-border bg-background px-5 py-4 md:text-right md:border-none md:bg-transparent md:px-0">
+                          <p className="text-[11px] uppercase tracking-[0.28em] text-highlight font-plus-jakarta">
                             Time
                           </p>
-                          <p className="mt-2 font-noto-serif text-2xl text-[#2C1E16]">
+                          <p className="mt-2 font-noto-serif text-2xl text-foreground">
                             {event.time}
                           </p>
                         </div>
                       </div>
 
-                      <div className="mt-8 grid gap-4 border-t border-[#E8DCC4] pt-5 md:grid-cols-[1fr_auto] md:items-end">
+                      <div className="mt-8 grid gap-4 border-t border-border pt-5 md:grid-cols-[1fr_auto] md:items-end">
                         <div>
-                          <p className="text-[11px] uppercase tracking-[0.28em] text-[#8A252C] font-plus-jakarta">
+                          <p className="text-[11px] uppercase tracking-[0.28em] text-accent font-plus-jakarta">
                             Venue
                           </p>
-                          <p className="mt-2 text-sm text-[#2C1E16] font-noto-serif italic">
+                          <p className="mt-2 text-sm text-foreground font-noto-serif italic">
                             {event.venue}
                           </p>
                         </div>
@@ -142,7 +142,7 @@ export default function EventsTimeline() {
                           href={event.mapUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 font-plus-jakarta text-xs font-semibold uppercase tracking-[0.22em] text-[#8F4E00] transition-all duration-300 hover:gap-3 opacity-90 hover:opacity-100"
+                          className="inline-flex items-center gap-2 font-plus-jakarta text-xs font-semibold uppercase tracking-[0.22em] text-highlight transition-all duration-300 hover:gap-3 opacity-90 hover:opacity-100"
                         >
                           Venue Map
                           <span className="material-symbols-outlined text-sm" style={{ fontVariationSettings: "'wght' 200" }}>arrow_right_alt</span>
@@ -158,36 +158,36 @@ export default function EventsTimeline() {
 
         <section className="px-6 pt-24 md:px-10 md:pt-32">
           <div className="mx-auto grid max-w-screen-xl gap-8 lg:grid-cols-3">
-            <div className="rounded-2xl border border-[#E8DCC4] bg-[#F5EFE6] p-10 lg:col-span-2">
-              <p className="text-xs uppercase tracking-[0.32em] text-[#8F4E00] font-plus-jakarta">
+            <div className="rounded-2xl border border-border bg-surface p-10 lg:col-span-2 transition-colors duration-700">
+              <p className="text-xs uppercase tracking-[0.32em] text-highlight font-plus-jakarta">
                 Venue & Flow
               </p>
-              <h3 className="mt-4 font-noto-serif text-3xl tracking-tight md:text-4xl text-[#8A252C]">
+              <h3 className="mt-4 font-noto-serif text-3xl tracking-tight md:text-4xl text-accent">
                 All celebrations are centered at {location.weddingVenue}.
               </h3>
-              <p className="mt-5 max-w-2xl text-base leading-[1.8] text-[#2C1E16]/80 font-plus-jakarta font-light">
+              <p className="mt-5 max-w-2xl text-base leading-[1.8] text-foreground/80 font-plus-jakarta font-light">
                 We have designed all our ceremonies to flow seamlessly in one beautiful location for your comfort. For detailed travel arrangements, lodging, and local movement around {cityName}, please review our travel guide.
               </p>
             </div>
 
-            <div className="rounded-2xl border border-[#E8DCC4] bg-transparent p-10 flex flex-col justify-center">
-              <p className="text-xs uppercase tracking-[0.32em] text-[#8A252C] font-plus-jakarta mb-6 text-center">
+            <div className="rounded-2xl border border-border bg-transparent p-10 flex flex-col justify-center">
+              <p className="text-xs uppercase tracking-[0.32em] text-accent font-plus-jakarta mb-6 text-center">
                 Next Steps
               </p>
               <div className="space-y-4">
                 <Link
                   href="/travel"
-                  className="flex items-center justify-between rounded-xl border border-[#E8DCC4] bg-[#FCFAF8] px-6 py-4 font-plus-jakarta text-xs font-semibold uppercase tracking-[0.22em] text-[#2C1E16] transition-transform duration-300 hover:-translate-y-1 hover:bg-[#F5EFE6]"
+                  className="flex items-center justify-between rounded-xl border border-border bg-background px-6 py-4 font-plus-jakarta text-xs font-semibold uppercase tracking-[0.22em] text-foreground transition-transform duration-300 hover:-translate-y-1 hover:bg-surface"
                 >
                   Travel Guide
-                  <span className="material-symbols-outlined text-sm text-[#8A252C]" style={{ fontVariationSettings: "'wght' 200" }}>arrow_right_alt</span>
+                  <span className="material-symbols-outlined text-sm text-accent" style={{ fontVariationSettings: "'wght' 200" }}>arrow_right_alt</span>
                 </Link>
                 <Link
                   href="/rsvp"
-                  className="flex items-center justify-between rounded-xl bg-[#8A252C] border border-[#8A252C] px-6 py-4 font-plus-jakarta text-xs font-semibold uppercase tracking-[0.22em] text-[#FCFAF8] transition-all duration-300 hover:-translate-y-1 hover:bg-[#6A1A20]"
+                  className="flex items-center justify-between rounded-xl bg-accent border border-accent px-6 py-4 font-plus-jakarta text-xs font-semibold uppercase tracking-[0.22em] text-background transition-all duration-300 hover:-translate-y-1 hover:opacity-90"
                 >
                   Send RSVP
-                  <span className="material-symbols-outlined text-sm text-[#FCFAF8]" style={{ fontVariationSettings: "'wght' 200" }}>arrow_right_alt</span>
+                  <span className="material-symbols-outlined text-sm text-background" style={{ fontVariationSettings: "'wght' 200" }}>arrow_right_alt</span>
                 </Link>
               </div>
             </div>

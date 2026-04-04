@@ -145,23 +145,23 @@ export default function TravelPage() {
 
   return (
     <>
-      <main className="bg-[#FCFAF8] pb-24 pt-28 text-[#2C1E16] font-body selection:bg-[#E8DCC4] selection:text-[#8A252C] md:pt-32">
+      <main className="bg-background pb-24 pt-28 text-foreground font-body selection:bg-border selection:text-accent md:pt-32 transition-colors duration-700">
         <div className="fixed inset-0 z-0 hidden pointer-events-none lg:block">
-          <div className="absolute bottom-0 left-12 top-0 w-px bg-[#E8DCC4]/50"></div>
-          <div className="absolute bottom-0 right-12 top-0 w-px bg-[#E8DCC4]/50"></div>
+          <div className="absolute bottom-0 left-12 top-0 w-px bg-border/20"></div>
+          <div className="absolute bottom-0 right-12 top-0 w-px bg-border/20"></div>
         </div>
 
         <header className="relative z-10 px-6 md:px-12">
-          <div className="mx-auto max-w-screen-xl border-b border-[#E8DCC4] pb-16">
-            <p className="font-plus-jakarta text-xs uppercase tracking-[0.4em] text-[#8F4E00]">
+          <div className="mx-auto max-w-screen-xl border-b border-border pb-16">
+            <p className="font-plus-jakarta text-xs uppercase tracking-[0.4em] text-highlight">
               Destination: {location.city.split(",")[0]}
             </p>
             <div className="mt-6 flex flex-col justify-between gap-10 md:flex-row md:items-end">
               <div className="max-w-3xl">
-                <h1 className="font-noto-serif text-5xl leading-[1.1] tracking-[-0.02em] text-[#8A252C] md:text-6xl lg:text-7xl">
+                <h1 className="font-noto-serif text-5xl leading-[1.1] tracking-[-0.02em] text-accent md:text-6xl lg:text-7xl">
                   Getting to the <br /> Heart of Bundelkhand.
                 </h1>
-                <p className="mt-8 max-w-2xl text-lg font-light leading-[1.8] text-[#2C1E16]/80 font-plus-jakarta">
+                <p className="mt-8 max-w-2xl text-lg font-light leading-[1.8] text-foreground/80 font-plus-jakarta">
                   Lalitpur is a historic city in the Bundelkhand region of Uttar
                   Pradesh, nestled elegantly between heritage and the horizon. We
                   have added the most useful train names and key road corridors so
@@ -169,51 +169,51 @@ export default function TravelPage() {
                 </p>
               </div>
 
-              <div className="min-w-[300px] rounded-2xl border border-[#E8DCC4] bg-[#F5EFE6] p-8">
-                <div className="mb-4 flex items-center gap-4 border-b border-[#E8DCC4] pb-4">
+              <div className="min-w-[300px] rounded-2xl border border-border bg-surface p-8 transition-colors duration-700">
+                <div className="mb-4 flex items-center gap-4 border-b border-border pb-4">
                   <span
-                    className="material-symbols-outlined text-[#8A252C]"
+                    className="material-symbols-outlined text-accent"
                     style={{ fontVariationSettings: "'wght' 200" }}
                   >
                     train
                   </span>
                   <div>
-                    <p className="font-plus-jakarta text-[10px] uppercase tracking-[0.28em] text-[#8A252C]">
+                    <p className="font-plus-jakarta text-[10px] uppercase tracking-[0.28em] text-accent">
                       Primary Hub
                     </p>
-                    <p className="font-noto-serif text-lg text-[#2C1E16]">
+                    <p className="font-noto-serif text-lg text-foreground">
                       {location.trainStationName}
                     </p>
                   </div>
                 </div>
-                <div className="mb-4 flex items-center gap-4 border-b border-[#E8DCC4] pb-4">
+                <div className="mb-4 flex items-center gap-4 border-b border-border pb-4">
                   <span
-                    className="material-symbols-outlined text-[#8A252C]"
+                    className="material-symbols-outlined text-accent"
                     style={{ fontVariationSettings: "'wght' 200" }}
                   >
                     place
                   </span>
                   <div>
-                    <p className="font-plus-jakarta text-[10px] uppercase tracking-[0.28em] text-[#8A252C]">
+                    <p className="font-plus-jakarta text-[10px] uppercase tracking-[0.28em] text-accent">
                       The Venue
                     </p>
-                    <p className="font-noto-serif text-lg text-[#2C1E16]">
+                    <p className="font-noto-serif text-lg text-foreground">
                       {location.weddingVenue}
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
                   <span
-                    className="material-symbols-outlined text-[#8A252C]"
+                    className="material-symbols-outlined text-accent"
                     style={{ fontVariationSettings: "'wght' 200" }}
                   >
                     map
                   </span>
                   <div>
-                    <p className="font-plus-jakarta text-[10px] uppercase tracking-[0.28em] text-[#8A252C]">
+                    <p className="font-plus-jakarta text-[10px] uppercase tracking-[0.28em] text-accent">
                       Distance
                     </p>
-                    <p className="font-noto-serif text-lg text-[#2C1E16]">
+                    <p className="font-noto-serif text-lg text-foreground">
                       {location.trainStationDistance} from Station
                     </p>
                   </div>
@@ -226,11 +226,11 @@ export default function TravelPage() {
         <section className="relative z-10 px-6 py-20 md:px-12">
           <div className="mx-auto max-w-screen-xl">
             <div className="mb-12">
-              <h2 className="font-noto-serif text-4xl tracking-tight text-[#8A252C]">
+              <h2 className="font-noto-serif text-4xl tracking-tight text-accent">
                 How to Reach
               </h2>
-              <div className="my-4 h-px w-16 bg-[#E8DCC4]"></div>
-              <p className="max-w-2xl font-plus-jakarta font-light text-[#2C1E16]/70">
+              <div className="my-4 h-px w-16 bg-border"></div>
+              <p className="max-w-2xl font-plus-jakarta font-light text-foreground/70">
                 Each city card below includes the train options we recommend
                 first, followed by roadway distance and NH guidance in the same
                 block.
@@ -241,9 +241,9 @@ export default function TravelPage() {
               {cityRoutes.map((hub) => (
                 <div
                   key={hub.name}
-                  className="flex flex-col rounded-2xl border border-[#E8DCC4] bg-transparent p-8 transition-colors duration-500 hover:bg-[#F5EFE6]"
+                  className="flex flex-col rounded-2xl border border-border bg-transparent p-8 transition-colors duration-500 hover:bg-surface/80"
                 >
-                  <div className="mb-6 text-[#8F4E00]">
+                  <div className="mb-6 text-highlight">
                     <span
                       className="material-symbols-outlined text-3xl"
                       style={{ fontVariationSettings: "'wght' 200" }}
@@ -251,24 +251,24 @@ export default function TravelPage() {
                       train
                     </span>
                   </div>
-                  <h3 className="mb-3 font-noto-serif text-2xl text-[#2C1E16]">
+                  <h3 className="mb-3 font-noto-serif text-2xl text-foreground">
                     {hub.name}
                   </h3>
-                  <p className="mb-6 flex-grow text-sm font-light leading-[1.8] text-[#2C1E16]/80 font-plus-jakarta">
+                  <p className="mb-6 flex-grow text-sm font-light leading-[1.8] text-foreground/80 font-plus-jakarta">
                     {hub.description}
                   </p>
-                  <div className="mt-auto border-t border-[#E8DCC4] pt-5">
-                    <p className="mb-3 font-plus-jakarta text-[11px] font-semibold uppercase tracking-[0.28em] text-[#8A252C]">
+                  <div className="mt-auto border-t border-border pt-5">
+                    <p className="mb-3 font-plus-jakarta text-[11px] font-semibold uppercase tracking-[0.28em] text-accent">
                       By Train (Recommended)
                     </p>
                     <ul className="space-y-3">
                       {hub.trains.map((train) => (
                         <li
                           key={train}
-                          className="flex items-start gap-2 text-sm leading-7 text-[#2C1E16] font-plus-jakarta"
+                          className="flex items-start gap-2 text-sm leading-7 text-foreground font-plus-jakarta"
                         >
                           <span
-                            className="material-symbols-outlined text-[14px] text-[#8F4E00]"
+                            className="material-symbols-outlined text-[14px] text-highlight"
                             style={{ fontVariationSettings: "'wght' 200" }}
                           >
                             arrow_right_alt
@@ -279,28 +279,28 @@ export default function TravelPage() {
                     </ul>
                   </div>
                   {hub.roadway ? (
-                    <div className="mt-8 border-t border-[#E8DCC4] pt-5">
-                      <p className="mb-3 font-plus-jakarta text-[11px] font-semibold uppercase tracking-[0.28em] text-[#8A252C]">
+                    <div className="mt-8 border-t border-border pt-5">
+                      <p className="mb-3 font-plus-jakarta text-[11px] font-semibold uppercase tracking-[0.28em] text-accent">
                         By Roadways
                       </p>
-                      <div className="space-y-4 text-sm font-plus-jakarta text-[#2C1E16]">
+                      <div className="space-y-4 text-sm font-plus-jakarta text-foreground">
                         <div>
-                          <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#8F4E00]">
+                          <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-highlight">
                             Distance
                           </p>
                           <p className="mt-1">{hub.roadway.distance}</p>
                         </div>
                         <div>
-                          <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#8F4E00]">
+                          <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-highlight">
                             Drive Time
                           </p>
                           <p className="mt-1">{hub.roadway.duration}</p>
                         </div>
                         <div>
-                          <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#8F4E00]">
+                          <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-highlight">
                             NH Information
                           </p>
-                          <p className="mt-1 leading-[1.8] text-[#2C1E16]/80">
+                          <p className="mt-1 leading-[1.8] text-foreground/80">
                             {hub.roadway.route}
                           </p>
                         </div>
@@ -313,16 +313,16 @@ export default function TravelPage() {
           </div>
         </section>
 
-        <section className="relative z-10 border-y border-[#E8DCC4] bg-[#F5EFE6] px-6 py-24 md:px-12">
+        <section className="relative z-10 border-y border-border bg-surface px-6 py-24 md:px-12 transition-colors duration-700">
           <div className="mx-auto max-w-screen-xl">
             <div className="mb-16 text-center">
-              <span className="mb-4 block font-plus-jakarta text-xs uppercase tracking-[0.4em] text-[#8F4E00]">
+              <span className="mb-4 block font-plus-jakarta text-xs uppercase tracking-[0.4em] text-highlight">
                 Extend Your Stay
               </span>
-              <h3 className="mb-6 font-noto-serif text-4xl tracking-tight text-[#8A252C] lg:text-5xl">
+              <h3 className="mb-6 font-noto-serif text-4xl tracking-tight text-accent lg:text-5xl">
                 Explore Historic Bundelkhand
               </h3>
-              <p className="mx-auto max-w-2xl font-plus-jakarta font-light leading-[1.8] text-[#2C1E16]/80">
+              <p className="mx-auto max-w-2xl font-plus-jakarta font-light leading-[1.8] text-foreground/80">
                 Lalitpur is a gateway to ancient empires, pristine Betwa river
                 valleys, and monumental 6th-century rock-cut architecture. Take a
                 moment to breathe in the heritage.
@@ -332,18 +332,18 @@ export default function TravelPage() {
             <div className="grid grid-cols-1 gap-x-12 gap-y-16 md:grid-cols-2">
               {attractions.map((item, i) => (
                 <div key={item.name} className="flex items-start gap-6">
-                  <div className="hidden h-12 w-12 flex-shrink-0 items-center justify-center rounded-full border border-[#E8DCC4] bg-[#FCFAF8] font-noto-serif text-lg text-[#8A252C] sm:flex">
+                  <div className="hidden h-12 w-12 flex-shrink-0 items-center justify-center rounded-full border border-border bg-background font-noto-serif text-lg text-accent sm:flex">
                     {i + 1}
                   </div>
                   <div>
-                    <h4 className="mb-3 font-noto-serif text-2xl text-[#2C1E16]">
+                    <h4 className="mb-3 font-noto-serif text-2xl text-foreground">
                       {item.name}
                     </h4>
-                    <p className="mb-4 text-sm font-light leading-[1.8] text-[#2C1E16]/80 font-plus-jakarta">
+                    <p className="mb-4 text-sm font-light leading-[1.8] text-foreground/80 font-plus-jakarta">
                       {item.desc}
                     </p>
                     <div className="flex flex-wrap items-center gap-3">
-                      <span className="inline-flex items-center gap-2 rounded-full border border-[#E8DCC4] bg-[#FCFAF8] px-3 py-1.5 font-plus-jakarta text-[10px] font-semibold uppercase tracking-[0.2em] text-[#8F4E00]">
+                      <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1.5 font-plus-jakarta text-[10px] font-semibold uppercase tracking-[0.2em] text-highlight">
                         {item.distance}
                       </span>
                       {item.mapLinks.map((mapLink) => (
@@ -352,7 +352,7 @@ export default function TravelPage() {
                           href={mapLink.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 rounded-full border border-[#E8DCC4] bg-transparent px-3 py-1.5 font-plus-jakarta text-[10px] font-semibold uppercase tracking-[0.2em] text-[#8A252C] transition-colors duration-300 hover:bg-[#FCFAF8]"
+                          className="inline-flex items-center gap-2 rounded-full border border-border bg-transparent px-3 py-1.5 font-plus-jakarta text-[10px] font-semibold uppercase tracking-[0.2em] text-accent transition-colors duration-300 hover:bg-background"
                         >
                           {mapLink.label}
                           <span
@@ -373,11 +373,11 @@ export default function TravelPage() {
 
         <section className="relative z-10 px-6 py-24 md:px-12">
           <div className="mx-auto max-w-screen-xl text-center">
-            <h3 className="mb-12 font-noto-serif text-4xl tracking-tight text-[#8A252C]">
+            <h3 className="mb-12 font-noto-serif text-4xl tracking-tight text-accent">
               The Wedding Venue
             </h3>
 
-            <div className="relative h-[500px] w-full overflow-hidden rounded-2xl border border-[#E8DCC4] bg-[#F5EFE6] shadow-[0_20px_40px_rgba(44,30,22,0.02)]">
+            <div className="relative h-[500px] w-full overflow-hidden rounded-2xl border border-border bg-surface shadow-[0_20px_40px_rgba(var(--color-foreground),0.02)] transition-colors duration-700">
               <iframe
                 src={location.mapEmbedUrl}
                 width="100%"
@@ -392,12 +392,12 @@ export default function TravelPage() {
             </div>
 
             <div className="mt-16 flex flex-col items-center">
-              <p className="mb-6 font-plus-jakarta text-xs uppercase tracking-[0.4em] text-[#8F4E00]">
+              <p className="mb-6 font-plus-jakarta text-xs uppercase tracking-[0.4em] text-highlight">
                 Next Step
               </p>
               <Link
                 href="/rsvp"
-                className="inline-flex items-center gap-3 rounded-full bg-[#8A252C] px-10 py-5 font-plus-jakarta text-xs font-semibold uppercase tracking-[0.25em] text-[#FCFAF8] shadow-[0_10px_30px_rgba(138,37,44,0.15)] outline-none transition-all duration-300 hover:scale-105 hover:bg-[#6A1A20] focus:ring focus:ring-[#8A252C]/20"
+                className="inline-flex items-center gap-3 rounded-full bg-accent px-10 py-5 font-plus-jakarta text-xs font-semibold uppercase tracking-[0.25em] text-background shadow-[0_10px_30px_rgba(var(--color-accent),0.15)] outline-none transition-all duration-300 hover:scale-105 hover:opacity-90 focus:ring focus:ring-accent/20"
               >
                 Send Us Your RSVP
                 <span
